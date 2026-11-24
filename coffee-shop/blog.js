@@ -1,4 +1,4 @@
-/* Mộc Coffee – script nhẹ cho trang blog (không dùng script.js vì trang này không có giỏ hàng/cửa hàng) */
+/* THANH TÂN Coffee – script nhẹ cho trang blog (không dùng script.js vì trang này không có giỏ hàng/cửa hàng) */
 const nav = document.getElementById("nav");
 const header = document.getElementById("header");
 

@@ -1,103 +1,92 @@
 /* ==========================================================
-   Mộc Coffee v2 – dữ liệu & tương tác
-   Sửa sản phẩm / vùng trồng / công thức ở phần DỮ LIỆU bên dưới.
+   THANH TÂN Coffee – dữ liệu & tương tác
+   Nhận diện theo "Bộ nhận diện thương hiệu THANH TÂN":
+   nâu đất + trắng ngà là chủ đạo; xanh cà phê + vàng đồng chỉ làm điểm nhấn.
+   LƯU Ý: giá bán, tỉ lệ giảm giá gói định kỳ, mã lô và ngưỡng freeship
+   bên dưới là DỮ LIỆU DEMO – thay bằng số thật trước khi chạy chính thức.
    ========================================================== */
 
-const C = { ink: "#1c1712", paper: "#fbf8f2", cream: "#f5efe4", terracotta: "#e2572b", mustard: "#f2b33d", forest: "#2f5d3a", cobalt: "#2b4bd8", pink: "#f4a6b8" };
+const C = {
+  ink: "#3A1F0D",      // nâu đậm (nền bản đảo của logo)
+  brown: "#6B3410",    // Nâu Đất Bazan
+  forest: "#3D5C34",   // Xanh Cà Phê Tươi
+  paper: "#F5EFE0",    // Trắng Ngà
+  cream: "#EBE1CA",    // tông đậm hơn của Trắng Ngà
+  gold: "#C9A227",     // Vàng Đồng
+};
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const fmt = (n) => n.toLocaleString("vi-VN") + "đ";
 const round = (n) => Math.round(n / 1000) * 1000;
 
-/* ---------- DỮ LIỆU: sản phẩm ---------- */
+/* ---------- Biểu tượng THANH TÂN: hạt cà phê ôm mầm lá non ---------- */
+function markSVG(c) {
+  return `<circle cx="50" cy="50" r="46" fill="none" stroke="${c.ring}" stroke-width="2.2"/>
+    <ellipse cx="50" cy="50" rx="22" ry="26" fill="${c.bean}" stroke="${c.ring}" stroke-width="2.2"/>
+    <path d="M50 24C58 32 58 44 50 54C42 44 42 32 50 24Z" fill="${c.leaf}"/>
+    <path d="M50 54C52 63 51 71 49 76" stroke="${c.stem}" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M29 52Q50 42 71 52" stroke="${c.arc}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+}
+const MARK_LIGHT = { ring: C.brown, bean: C.paper, leaf: C.gold, stem: C.brown, arc: C.gold };      // bản chính – nền sáng
+const MARK_DARK = { ring: C.paper, bean: "none", leaf: C.gold, stem: C.paper, arc: C.gold };        // bản đảo – nền tối
+
+/* ---------- DỮ LIỆU: 4 dòng sản phẩm ---------- */
 const SIZES = {
   bean: [{ label: "250g", m: 1 }, { label: "500g", m: 1.9 }, { label: "1kg", m: 3.6 }],
-  rtd: [{ label: "1 chai", m: 1 }, { label: "Lốc 6", m: 5.5 }],
-  gift: [{ label: "1 hộp", m: 1 }],
+  rtd: [{ label: "1 lon", m: 1 }, { label: "Lốc 6", m: 5.5 }],
 };
 
+// look: màu bao bì. Nền bao bì luôn là nâu đất hoặc trắng ngà, mỗi dòng có một màu điểm nhấn riêng.
 const products = [
-  { id: 1, short: "CẦU ĐẤT", cat: "single", name: "Arabica Cầu Đất", origin: "Lâm Đồng · 1.600m", notes: "Cam vàng · Hoa nhài · Mật ong", roast: 2, price: 240000, tag: "Specialty",
-    bg: C.cobalt, bag: C.pink, label: C.paper, motif: "mountain", sizes: "bean" },
-  { id: 2, short: "BMT HONEY", cat: "single", name: "Robusta Honey Buôn Ma Thuột", origin: "Đắk Lắk · 500m", notes: "Socola đen · Caramel · Đường thốt nốt", roast: 4, price: 165000, tag: "Bán chạy",
-    bg: C.mustard, bag: C.terracotta, label: C.paper, motif: "sun", sizes: "bean" },
-  { id: 3, short: "SƠN LA", cat: "single", name: "Arabica Sơn La Washed", origin: "Sơn La · 1.200m", notes: "Táo xanh · Trà đen · Hạt dẻ", roast: 3, price: 210000,
-    bg: C.pink, bag: C.forest, label: C.paper, motif: "leaf", sizes: "bean" },
-  { id: 4, short: "KHE SANH", cat: "single", name: "Robusta Khe Sanh Natural", origin: "Quảng Trị · 450m", notes: "Mận chín · Cacao · Vang đỏ", roast: 4, price: 175000, tag: "Micro-lot",
-    bg: C.forest, bag: C.mustard, label: C.paper, motif: "star", sizes: "bean" },
-  { id: 5, short: "PHIN BLEND", cat: "blend", name: "Mộc Phin Blend", origin: "Robusta 70 · Arabica 30", notes: "Đậm đà · Socola · Hạt rang", roast: 5, price: 135000,
-    bg: C.terracotta, bag: C.ink, label: C.mustard, motif: "bean", sizes: "bean" },
-  { id: 6, short: "ESPRESSO", cat: "blend", name: "Mộc Espresso Blend", origin: "Robusta 40 · Arabica 60", notes: "Caramel · Hạnh nhân · Crema dày", roast: 4, price: 155000,
-    bg: C.cream, bag: C.cobalt, label: C.mustard, motif: "wave", sizes: "bean" },
-  { id: 7, short: "COLD BREW", cat: "rtd", name: "Cold Brew Mộc", origin: "Ủ lạnh 18 giờ · 330ml", notes: "Mượt · Ít đắng · Ngọt hậu", roast: 3, price: 45000, tag: "Mới",
-    bg: C.cobalt, bag: C.ink, label: C.mustard, motif: "bottle", sizes: "rtd" },
-  { id: 8, short: "BỐN VÙNG", cat: "gift", name: "Hộp Quà Bốn Vùng", origin: "4 túi 100g + phin đồng", notes: "Hộp gỗ · Khắc tên miễn phí", roast: 0, price: 590000, tag: "Quà Tết",
-    bg: C.mustard, bag: C.forest, label: C.terracotta, motif: "box", sizes: "gift" },
+  { id: 1, line: "NGUYÊN BẢN", cat: "bean", name: "Thanh Tân Nguyên Bản", origin: "Robusta Buôn Ma Thuột · Rang mộc",
+    notes: "Đậm vị truyền thống, dành cho người yêu cà phê phin đậm đà.", price: 165000, sizes: "bean", bg: C.cream,
+    look: { body: C.brown, band: C.ink, text: C.paper, sub: "#D9C7A5", mark: MARK_DARK, shape: "pouch" } },
+  { id: 2, line: "THƯỢNG HẠNG", cat: "bean", name: "Thanh Tân Thượng Hạng", origin: "Arabica Cầu Đất pha Robusta Buôn Ma Thuột",
+    notes: "Hương thơm tinh tế, hậu vị ngọt dịu.", price: 195000, sizes: "bean", bg: C.brown,
+    look: { body: C.paper, band: C.gold, text: C.brown, sub: "#8A6A4D", mark: MARK_LIGHT, shape: "pouch" } },
+  { id: 3, line: "CỔ TRUYỀN", cat: "bean", name: "Thanh Tân Cổ Truyền", origin: "Rang xay kiểu phin truyền thống",
+    notes: "Đóng gói hoài cổ, gợi nhớ hương vị cà phê xưa.", price: 135000, sizes: "bean", bg: C.gold,
+    look: { body: C.cream, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "pouch" } },
+  { id: 4, line: "TƯƠI MỚI", cat: "rtd", name: "Thanh Tân Tươi Mới", origin: "Cold Brew đóng lon",
+    notes: "Trẻ trung, tiện lợi, dành cho người trẻ đô thị năng động.", price: 45000, sizes: "rtd", bg: C.forest,
+    look: { body: C.paper, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "can" } },
 ];
 
-/* ---------- Minh hoạ SVG (không cần ảnh, chạy offline) ---------- */
-const MOTIF = {
-  mountain: (c) => `<path d="M62 190 92 150 106 166 124 140 152 190Z" fill="${c}"/><circle cx="134" cy="150" r="7" fill="${C.mustard}"/>`,
-  sun: (c) => `<circle cx="100" cy="166" r="16" fill="${c}"/>${[...Array(8)].map((_, i) => `<rect x="98" y="134" width="4" height="9" rx="2" fill="${c}" transform="rotate(${i * 45} 100 166)"/>`).join("")}`,
-  leaf: (c) => `<path d="M100 192C74 174 78 146 112 138c8 26-2 44-12 54Z" fill="${c}"/><path d="M100 190c2-16 6-30 12-50" stroke="${C.paper}" stroke-width="2" fill="none"/>`,
-  star: (c) => `<path d="m100 138 8 18 20 2-15 13 5 19-18-10-18 10 5-19-15-13 20-2Z" fill="${c}"/>`,
-  bean: (c) => `<ellipse cx="100" cy="166" rx="18" ry="25" fill="${c}" transform="rotate(25 100 166)"/><path d="M92 146c12 10 4 30 16 40" stroke="${C.mustard}" stroke-width="3" fill="none" stroke-linecap="round"/>`,
-  wave: (c) => `<path d="M64 160q9-12 18 0t18 0 18 0 18 0M64 176q9-12 18 0t18 0 18 0 18 0" stroke="${c}" stroke-width="5" fill="none" stroke-linecap="round"/>`,
-};
-
 function bagSVG(p) {
-  if (p.motif === "bottle") {
+  const L = p.look;
+  const mark = (y) => `<g transform="translate(70 ${y}) scale(.6)">${markSVG(L.mark)}</g>`;
+  if (L.shape === "can") {
     return `<svg viewBox="0 0 200 260" aria-hidden="true">
-      <rect x="80" y="10" width="40" height="26" rx="5" fill="${C.mustard}"/>
-      <path d="M82 36h36v20c22 12 30 26 30 48v136q0 12-12 12H64q-12 0-12-12V104c0-22 8-36 30-48Z" fill="${p.bag}"/>
-      <rect x="58" y="112" width="84" height="96" rx="8" fill="${p.label}"/>
-      <text x="100" y="146" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="22" fill="${C.ink}">mộc.</text>
-      <text x="100" y="172" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="800" font-size="13" fill="${C.ink}">COLD BREW</text>
-      <path d="M72 188q7-8 14 0t14 0 14 0 14 0" stroke="${C.ink}" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <rect x="36" y="22" width="128" height="14" rx="5" fill="${L.band}"/>
+      <rect x="38" y="34" width="124" height="196" rx="14" fill="${L.body}"/>
+      <rect x="36" y="226" width="128" height="14" rx="5" fill="${L.band}"/>
+      ${mark(66)}
+      <text x="100" y="150" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="800" font-size="13.5" letter-spacing="2.6" fill="${L.text}">THANH TÂN</text>
+      <text x="100" y="168" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="8.5" letter-spacing="2.2" fill="${L.sub}">${p.line}</text>
+      <text x="100" y="210" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="7" letter-spacing="1.6" fill="${L.sub}">COLD BREW</text>
     </svg>`;
   }
-  if (p.motif === "box") {
-    return `<svg viewBox="0 0 200 260" aria-hidden="true">
-      <path d="M100 60c-14-30-46-24-40-4 4 12 26 10 40 4Zm0 0c14-30 46-24 40-4-4 12-26 10-40 4Z" fill="${p.label}"/>
-      <rect x="18" y="64" width="164" height="46" rx="8" fill="${p.bag}" />
-      <rect x="28" y="108" width="144" height="136" rx="6" fill="${p.bag}" opacity=".88"/>
-      <rect x="88" y="64" width="24" height="180" fill="${p.label}"/>
-      <rect x="44" y="150" width="34" height="50" rx="4" fill="${C.paper}"/><rect x="122" y="150" width="34" height="50" rx="4" fill="${C.paper}"/>
-      <text x="61" y="181" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="13" fill="${C.ink}">m.</text>
-      <text x="139" y="181" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="13" fill="${C.ink}">m.</text>
-    </svg>`;
-  }
-  const short = p.short;
   return `<svg viewBox="0 0 200 260" aria-hidden="true">
-    <path d="M24 20h152l4 26H20Z" fill="${p.bag}"/>
-    <path d="M24 20l8 6 8-6 8 6 8-6 8 6 8-6 8 6 8-6 8 6 8-6 8 6 8-6 8 6 8-6 8 6 8-6 8 6 8-6 8 6 4 0" stroke="rgba(0,0,0,.25)" stroke-width="2" fill="none"/>
-    <path d="M20 46h160l10 198q1 12-11 12H21q-12 0-11-12Z" fill="${p.bag}"/>
-    <path d="M20 46h160v6H20z" fill="rgba(0,0,0,.18)"/>
-    <rect x="46" y="84" width="108" height="140" rx="12" fill="${p.label}"/>
-    <text x="100" y="116" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="24" fill="${C.ink}">mộc.</text>
-    ${MOTIF[p.motif](p.bag === C.ink ? C.terracotta : p.bag)}
-    <text x="100" y="212" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="800" font-size="11" letter-spacing="1" fill="${C.ink}">${short}</text>
+    <rect x="22" y="14" width="156" height="30" rx="7" fill="${L.band}"/>
+    <rect x="22" y="36" width="156" height="212" rx="24" fill="${L.body}"/>
+    <rect x="22" y="36" width="156" height="8" fill="${L.band}" opacity=".35"/>
+    ${mark(74)}
+    <text x="100" y="156" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="800" font-size="15" letter-spacing="3" fill="${L.text}">THANH TÂN</text>
+    <text x="100" y="174" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="8.5" letter-spacing="2.2" fill="${L.sub}">${p.line}</text>
+    <text x="100" y="228" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="7" letter-spacing="1.4" fill="${L.sub}">BUÔN MA THUỘT · ĐẮK LẮK</text>
   </svg>`;
 }
 
-/* ---------- DỮ LIỆU: vùng trồng (kể chuyện kiểu Escape) ---------- */
+/* ---------- DỮ LIỆU: vùng đất (kể chuyện nguồn gốc) ---------- */
 const origins = [
-  { code: "CD", name: "Cầu Đất", region: "Đà Lạt, Lâm Đồng", alt: "1.600m", variety: "Bourbon, Typica", process: "Washed (sơ chế ướt)", harvest: "Tháng 11 – 1", productId: 1,
-    story: "Vùng Arabica lâu đời nhất Việt Nam, người Pháp đưa giống về từ năm 1927. Sương mù quanh năm và đêm lạnh 12°C giúp quả chín chậm, tích nhiều đường – tạo vị chua thanh như cam vàng.",
-    farmer: "Anh Phạm Văn Tú", farmerNote: "18 năm trồng Arabica", quote: "Hái chín đỏ từng quả, chậm mà chắc.",
-    sky: "#f8d9cf", sun: C.mustard, hills: ["#7e8fe8", C.cobalt, "#1a2f8f"], peaks: [0.55, 0.85, 0.6, 0.95, 0.7] },
-  { code: "BMT", name: "Buôn Ma Thuột", region: "Đắk Lắk", alt: "500m", variety: "Robusta TR4, TR9", process: "Honey (giữ lớp nhớt)", harvest: "Tháng 10 – 12", productId: 2,
-    story: "Thủ phủ cà phê của Việt Nam với đất đỏ bazan giàu khoáng. Lô Honey được phơi giàn cùng lớp nhớt quả, cho vị ngọt caramel và hậu socola đặc trưng.",
-    farmer: "Chị H'Mai Niê", farmerNote: "Hợp tác xã Ea Tu", quote: "Đất đỏ cho hạt đậm, mình cho hạt cái tâm.",
-    sky: "#fde7b5", sun: C.terracotta, hills: ["#e8955f", C.terracotta, "#8f2e12"], peaks: [0.35, 0.45, 0.3, 0.5, 0.4] },
-  { code: "SL", name: "Sơn La", region: "Thuận Châu, Sơn La", alt: "1.200m", variety: "Catimor", process: "Washed (sơ chế ướt)", harvest: "Tháng 10 – 12", productId: 3,
-    story: "Arabica vùng Tây Bắc trồng xen rừng trên sườn đồi dốc. Biên độ nhiệt ngày–đêm lớn cho hạt chắc, vị sạch như trà đen với chút táo xanh.",
-    farmer: "Anh Lò Văn Pọm", farmerNote: "Dân tộc Thái, 3 ha", quote: "Cây cà phê ở đây sống cùng rừng.",
-    sky: "#dbe9d2", sun: C.pink, hills: ["#7fae86", C.forest, "#183a22"], peaks: [0.7, 0.5, 0.9, 0.6, 0.8] },
-  { code: "KS", name: "Khe Sanh", region: "Hướng Hoá, Quảng Trị", alt: "450m", variety: "Robusta", process: "Natural (phơi nguyên quả)", harvest: "Tháng 11 – 1", productId: 4,
-    story: "Vùng đất lịch sử với khí hậu giao thoa Đông – Tây Trường Sơn. Phơi nguyên quả 25 ngày cho lô micro-lot vị mận chín, cacao và chút vang đỏ.",
-    farmer: "Ông Lê Văn Thắng", farmerNote: "Vườn 40 năm tuổi", quote: "Nắng gió Lào làm quả ngọt lạ.",
-    sky: "#f4ddb0", sun: "#fff4d6", hills: ["#d9a441", "#a87522", "#5a3d0e"], peaks: [0.4, 0.55, 0.45, 0.6, 0.35] },
+  { code: "BMT", name: "Buôn Ma Thuột", region: "Đắk Lắk", alt: "500m", soil: "Đất đỏ bazan", variety: "Robusta", products: "Nguyên Bản · Cổ Truyền", productId: 1,
+    story: "Thủ phủ cà phê Việt Nam – nơi đất đỏ bazan ôm ấp từng gốc cà phê qua bao thế hệ nông dân Tây Nguyên. Robusta Buôn Ma Thuột là nền của dòng Nguyên Bản: rang mộc, giữ trọn vị đậm truyền thống.",
+    quote: "Từ đất bazan, thanh tân vạn dặm.",
+    sky: "#F3E6C8", sun: C.gold, hills: ["#B9783F", C.brown, C.ink], peaks: [0.35, 0.45, 0.3, 0.5, 0.4] },
+  { code: "CD", name: "Cầu Đất", region: "Đà Lạt, Lâm Đồng", alt: "1.600m", soil: "Cao nguyên mát lạnh", variety: "Arabica", products: "Thượng Hạng", productId: 2,
+    story: "Arabica Cầu Đất mang đến hương thơm tinh tế và hậu vị ngọt dịu. Phối cùng Robusta Buôn Ma Thuột, hai vùng đất gặp nhau trong dòng Thượng Hạng.",
+    quote: "Nguyên chất từ đất, thanh tân từ tâm.",
+    sky: "#E4EBD8", sun: C.paper, hills: ["#8FA884", C.forest, "#223A1C"], peaks: [0.55, 0.85, 0.6, 0.95, 0.7] },
 ];
 
 function hillPath(peaks, base, amp, color, offset) {
@@ -127,16 +116,16 @@ function landscapeSVG(o) {
 
 /* ---------- DỮ LIỆU: cách pha ---------- */
 const brews = [
-  { icon: "🫖", name: "Phin", color: C.mustard, rows: [["Tỉ lệ", "20g : 100ml"], ["Nhiệt độ", "92–94°C"], ["Độ xay", "Vừa – thô"], ["Thời gian", "4–5 phút"]], tip: "Ủ 20ml nước 30 giây cho hạt nở rồi mới rót tiếp." },
-  { icon: "☕", name: "Pour-over", color: C.pink, rows: [["Tỉ lệ", "15g : 250ml"], ["Nhiệt độ", "92–93°C"], ["Độ xay", "Vừa – mịn"], ["Thời gian", "2:30–3:00"]], tip: "Rót xoắn ốc 3 lần, hợp Arabica Cầu Đất & Sơn La." },
-  { icon: "⚡", name: "Espresso", color: C.terracotta, rows: [["Tỉ lệ", "18g → 36g"], ["Nhiệt độ", "93°C"], ["Độ xay", "Mịn"], ["Thời gian", "25–30 giây"]], tip: "Dùng Espresso Blend, để hạt nghỉ 7 ngày sau rang." },
-  { icon: "🧊", name: "Cold brew", color: "#9fb4ff", rows: [["Tỉ lệ", "100g : 1L"], ["Nước", "Lạnh / thường"], ["Độ xay", "Thô"], ["Thời gian", "16–18 giờ"]], tip: "Ủ trong tủ lạnh, lọc 2 lần, giữ được 7 ngày." },
+  { icon: "🫖", name: "Phin", color: C.gold, rows: [["Tỉ lệ", "20g : 100ml"], ["Nhiệt độ", "92–94°C"], ["Độ xay", "Vừa – thô"], ["Thời gian", "4–5 phút"]], tip: "Ủ 20ml nước 30 giây cho hạt nở rồi mới rót tiếp. Hợp Nguyên Bản và Cổ Truyền." },
+  { icon: "☕", name: "Pour-over", color: "#B9C9B0", rows: [["Tỉ lệ", "15g : 250ml"], ["Nhiệt độ", "92–93°C"], ["Độ xay", "Vừa – mịn"], ["Thời gian", "2:30–3:00"]], tip: "Rót xoắn ốc 3 lần, hợp dòng Thượng Hạng." },
+  { icon: "⚡", name: "Espresso", color: "#D9B38C", rows: [["Tỉ lệ", "18g → 36g"], ["Nhiệt độ", "93°C"], ["Độ xay", "Mịn"], ["Thời gian", "25–30 giây"]], tip: "Để hạt nghỉ 7 ngày sau rang. Hợp dòng Thượng Hạng." },
+  { icon: "🧊", name: "Cold brew", color: C.cream, rows: [["Tỉ lệ", "100g : 1L"], ["Nước", "Lạnh / thường"], ["Độ xay", "Thô"], ["Thời gian", "16–18 giờ"]], tip: "Ủ trong tủ lạnh, lọc 2 lần, giữ được 7 ngày. Ngại ủ? Đã có dòng Tươi Mới đóng lon." },
 ];
 
 /* ==========================================================
    HERO
    ========================================================== */
-$("#heroBags").innerHTML = [products[2], products[0], products[3]].map(bagSVG).join("");
+$("#heroBags").innerHTML = [products[1], products[0], products[2]].map(bagSVG).join("");
 
 /* ==========================================================
    SHOP
@@ -144,19 +133,13 @@ $("#heroBags").innerHTML = [products[2], products[0], products[3]].map(bagSVG).j
 const grid = $("#productGrid");
 const priceOf = (p, i) => round(p.price * SIZES[p.sizes][i].m);
 
-function roastHTML(n) {
-  if (!n) return `<div class="roast">Set quà tặng</div>`;
-  return `<div class="roast">Độ rang <span class="roast__dots">${[1, 2, 3, 4, 5].map((i) => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span></div>`;
-}
-
 function cardHTML(p, i = 0) {
   const sizes = SIZES[p.sizes];
   return `<article class="card" style="animation-delay:${i * 50}ms" data-id="${p.id}">
-    <div class="card__media" style="background:${p.bg}">${p.tag ? `<span class="card__tag">${p.tag}</span>` : ""}${bagSVG(p)}</div>
+    <div class="card__media" style="background:${p.bg}">${bagSVG(p)}</div>
     <span class="card__origin">${p.origin}</span>
     <h3>${p.name}</h3>
     <p class="card__notes">${p.notes}</p>
-    ${roastHTML(p.roast)}
     <div class="card__buy">
       ${sizes.length > 1 ? `<select aria-label="Chọn khối lượng">${sizes.map((s, k) => `<option value="${k}">${s.label}</option>`).join("")}</select>` : ""}
       <button class="card__add"><span>Thêm</span><b>${fmt(p.price)}</b></button>
@@ -197,8 +180,8 @@ grid.addEventListener("click", (e) => {
    ========================================================== */
 const FREESHIP = 300000;
 let cart = [];
-try { cart = JSON.parse(localStorage.getItem("moc-cart-v2")) || []; } catch { cart = []; }
-const save = () => { try { localStorage.setItem("moc-cart-v2", JSON.stringify(cart)); } catch {} };
+try { cart = JSON.parse(localStorage.getItem("thanhtan-cart-v1")) || []; } catch { cart = []; }
+const save = () => { try { localStorage.setItem("thanhtan-cart-v1", JSON.stringify(cart)); } catch {} };
 
 function addItem(item) {
   const found = cart.find((x) => x.key === item.key);
@@ -224,7 +207,7 @@ function renderCart() {
   $("#shipBar").style.width = Math.min(100, (total / FREESHIP) * 100) + "%";
   $("#cartItems").innerHTML = cart.length
     ? cart.map((i) => {
-        const p = products.find((x) => x.id === i.pid) || products[4];
+        const p = products.find((x) => x.id === i.pid) || products[0];
         return `<div class="citem">
           <div class="citem__img" style="background:${p.bg}">${bagSVG(p)}</div>
           <div><h4>${i.name}</h4><small>${i.sub}</small>
@@ -233,7 +216,7 @@ function renderCart() {
           <div class="citem__price">${fmt(i.price * i.qty)}<button data-act="del" data-key="${i.key}">Xoá</button></div>
         </div>`;
       }).join("")
-    : `<div class="cart__empty"><b>Giỏ hàng trống</b>Chọn một túi hạt rang tuần này nhé ☕</div>`;
+    : `<div class="cart__empty"><b>Giỏ hàng trống</b>Chọn một dòng cà phê Thanh Tân nhé ☕</div>`;
   save();
 }
 
@@ -256,33 +239,30 @@ document.addEventListener("keydown", (e) => e.key === "Escape" && closeCart());
 $("#checkoutBtn").addEventListener("click", () => {
   if (!cart.length) return toast("Giỏ hàng đang trống");
   cart = []; renderCart(); closeCart();
-  toast("🎉 Đặt hàng thành công! Mộc sẽ gọi xác nhận trong 15 phút.");
+  toast("Cảm ơn bạn! Thanh Tân sẽ liên hệ xác nhận đơn hàng.");
 });
 renderCart();
 
 /* ==========================================================
-   QUIZ – tìm gu (Single O style)
+   QUIZ – tìm gu
    ========================================================== */
 const quiz = [
   { q: "Bạn thường pha cà phê bằng gì?", key: "tool", opts: [["🫖", "Phin", "phin"], ["⚡", "Máy espresso", "espresso"], ["☕", "Pour-over / V60", "pour"], ["🧊", "Lười – uống liền", "rtd"]] },
-  { q: "Gu vị của bạn là…", key: "taste", opts: [["💪", "Đậm, đắng mạnh", "bold"], ["⚖️", "Cân bằng, dễ uống", "balanced"], ["🍊", "Chua thanh, trái cây", "fruity"], ["🍷", "Lạ miệng, phức hợp", "funky"]] },
+  { q: "Gu vị của bạn là…", key: "taste", opts: [["💪", "Đậm đà, mạnh mẽ", "bold"], ["🌿", "Thơm tinh tế, hậu ngọt dịu", "light"], ["🏮", "Hoài cổ, như cà phê xưa", "classic"]] },
   { q: "Bạn uống kèm sữa không?", key: "milk", opts: [["🥛", "Có, phải có sữa", "milk"], ["⚫", "Đen nguyên bản", "black"]] },
 ];
 let qStep = 0, answers = {};
 
 function recommend(a) {
-  if (a.tool === "rtd") return [7, "Bạn cần nhanh gọn – Cold Brew ủ sẵn, mở nắp là uống, pha thêm sữa cũng ngon."];
-  if (a.taste === "fruity") return [1, "Vị chua thanh hương cam, hoa nhài – sinh ra để pha pour-over và uống đen."];
-  if (a.taste === "funky") return [4, "Micro-lot phơi nguyên quả: mận chín, cacao, chút vang – trải nghiệm rất khác."];
-  if (a.tool === "espresso") return [6, "Crema dày, caramel hạnh nhân – lên latte hay cappuccino đều tròn vị."];
-  if (a.taste === "balanced") return [3, "Sạch vị, nhẹ nhàng như trà đen – uống cả ngày không ngán."];
-  if (a.milk === "milk") return [5, "Đậm đặc kiểu Sài Gòn, pha phin với sữa đặc là chuẩn bài."];
-  return [2, "Đậm, ngọt hậu socola – Robusta Honey pha phin uống đen cực đã."];
+  if (a.tool === "rtd") return [4, "Bạn cần nhanh gọn – Cold Brew đóng lon trẻ trung, mở nắp là uống."];
+  if (a.taste === "light" || a.tool === "espresso" || a.tool === "pour") return [2, "Arabica Cầu Đất pha Robusta Buôn Ma Thuột – hương thơm tinh tế, hậu vị ngọt dịu."];
+  if (a.taste === "classic" || a.milk === "milk") return [3, "Rang xay kiểu phin truyền thống – gợi nhớ hương vị cà phê xưa, hợp pha phin với sữa."];
+  return [1, "Robusta Buôn Ma Thuột rang mộc – đậm vị truyền thống cho người yêu cà phê phin đậm đà."];
 }
 
 function renderQuiz() {
   const card = $("#quizCard");
-  const bar = `<div class="quiz__progress">${quiz.map((_, i) => `<i class="${i < qStep || qStep >= quiz.length ? "on" : i === qStep ? "on" : ""}"></i>`).join("")}</div>`;
+  const bar = `<div class="quiz__progress">${quiz.map((_, i) => `<i class="${i <= qStep ? "on" : ""}"></i>`).join("")}</div>`;
   if (qStep < quiz.length) {
     const q = quiz[qStep];
     card.innerHTML = `${bar}<p class="quiz__q">${q.q}</p><div class="quiz__opts">${q.opts.map(([ic, t, v]) =>
@@ -311,7 +291,7 @@ $("#quizCard").addEventListener("click", (e) => {
 renderQuiz();
 
 /* ==========================================================
-   ORIGINS + TRUY XUẤT (Escape style)
+   NGUỒN GỐC + TRA CỨU MÃ LÔ
    ========================================================== */
 let activeOrigin = 0;
 function renderOrigin() {
@@ -324,14 +304,14 @@ function renderOrigin() {
       <p class="origin__region">${o.region}</p>
       <p>${o.story}</p>
       <div class="facts">
+        <div><small>Thổ nhưỡng</small><b>${o.soil}</b></div>
         <div><small>Giống</small><b>${o.variety}</b></div>
-        <div><small>Sơ chế</small><b>${o.process}</b></div>
-        <div><small>Mùa vụ</small><b>${o.harvest}</b></div>
-        <div><small>Sản phẩm</small><b><a href="#shop" class="link-btn" data-goto="${o.productId}">Xem túi hạt →</a></b></div>
+        <div><small>Dòng sản phẩm</small><b>${o.products}</b></div>
+        <div><small>Mua ngay</small><b><a href="#shop" class="link-btn" data-goto="${o.productId}">Xem sản phẩm →</a></b></div>
       </div>
       <div class="farmer">
-        <span class="farmer__av" style="background:${o.hills[1]}">${o.farmer.split(" ").pop()[0]}</span>
-        <div><q>${o.quote}</q><small>${o.farmer} · ${o.farmerNote}</small></div>
+        <span class="farmer__av" style="background:${o.hills[1]}">TT</span>
+        <div><q>${o.quote}</q><small>THANH TÂN</small></div>
       </div>
     </div>`;
 }
@@ -346,19 +326,18 @@ renderOrigin();
 $("#traceForm").addEventListener("submit", (e) => {
   e.preventDefault();
   const raw = $("#traceInput").value.trim().toUpperCase();
-  const m = raw.match(/^MOC-(CD|BMT|SL|KS)-(\d{2})(\d{2})$/);
+  const m = raw.match(/^TT-(BMT|CD)-(\d{2})(\d{2})$/);
   const out = $("#traceResult");
   if (!m || +m[3] < 1 || +m[3] > 12) {
-    out.innerHTML = `<p class="trace__err">Không tìm thấy mã lô. Thử: MOC-CD-2611, MOC-BMT-2611, MOC-SL-2610 hoặc MOC-KS-2611.</p>`;
+    out.innerHTML = `<p class="trace__err">Không tìm thấy mã lô. Thử: TT-BMT-2611 hoặc TT-CD-2611.</p>`;
     return;
   }
   const o = origins.find((x) => x.code === m[1]);
   const lot = (raw.split("").reduce((s, ch) => s + ch.charCodeAt(0), 0) % 90) + 10;
   out.innerHTML = `<div class="trace__ok">
     <div><small>Vùng trồng</small><b>${o.name}, ${o.region}</b></div>
-    <div><small>Nông hộ</small><b>${o.farmer}</b></div>
+    <div><small>Giống</small><b>${o.variety}</b></div>
     <div><small>Lô rang</small><b>#${lot} · tháng ${+m[3]}/20${m[2]}</b></div>
-    <div><small>Sơ chế</small><b>${o.process}</b></div>
     <div><small>Độ cao</small><b>${o.alt}</b></div>
   </div>`;
 });
@@ -375,7 +354,7 @@ document.addEventListener("click", (e) => {
    GÓI ĐỊNH KỲ
    ========================================================== */
 const plan = { freq: 2, size: 250 };
-const PLAN_BASE = 180000; // giá trung bình 250g
+const PLAN_BASE = 180000; // giá trung bình 250g (demo)
 const sizeMul = { 250: 1, 500: 1.9, 1000: 3.6 };
 function renderPlan() {
   const full = round(PLAN_BASE * sizeMul[plan.size]);
@@ -400,7 +379,7 @@ renderPlan();
 $("#planBtn").addEventListener("click", () => {
   const price = round(PLAN_BASE * sizeMul[plan.size] * 0.85);
   const sizeLabel = plan.size === 1000 ? "1kg" : plan.size + "g";
-  addItem({ key: `sub-${plan.freq}-${plan.size}`, pid: 5, name: "Gói định kỳ Mộc", sub: `${sizeLabel} / ${plan.freq} tuần`, price });
+  addItem({ key: `sub-${plan.freq}-${plan.size}`, pid: 1, name: "Gói định kỳ Thanh Tân", sub: `${sizeLabel} / ${plan.freq} tuần`, price });
   openCart();
 });
 
@@ -448,7 +427,7 @@ $$(".reveal").forEach((el) => io.observe(el));
 $("#newsForm").addEventListener("submit", (e) => {
   e.preventDefault();
   e.target.reset();
-  toast("Đăng ký thành công! Mã MOC20 đã được gửi vào email.");
+  toast("Cảm ơn bạn đã đăng ký nhận tin từ Thanh Tân!");
 });
 
 $("#year").textContent = new Date().getFullYear();
