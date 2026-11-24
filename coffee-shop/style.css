@@ -271,8 +271,8 @@ h2 { font-size: clamp(1.7rem, 3.6vw, 2.6rem); text-transform: uppercase; letter-
 @media (max-width: 880px) {
   .section { padding: 80px 0; }
   .menu-toggle { display: grid; }
-  .nav { position: absolute; top: 74px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--paper); border-bottom: 1px solid var(--line); max-height: 0; overflow: hidden; transition: max-height .3s; }
-  .nav.open { max-height: 400px; }
+  .nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--paper); border-bottom: 0; max-height: 0; overflow: hidden; transition: max-height .3s; }
+  .nav.open { max-height: 400px; border-bottom: 1px solid var(--line); }
   .nav a { padding: 16px 24px; border-top: 1px solid var(--line); }
   .nav a::after { display: none; }
   .hero__inner, .quiz__inner, .subscribe__inner, .origin, .trace, .footer__top { grid-template-columns: 1fr; }
@@ -472,4 +472,70 @@ h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: .1em; font-weight: 6
 @media (max-width: 760px) {
   .header__inner { height: 92px; }
   .logo { font-size: .9rem; letter-spacing: .14em; gap: 12px; }
+}
+
+
+/* ================= Sửa lỗi giao diện (rà header → footer) ================= */
+/* Nhịp khoảng trắng: bớt khoảng trống thừa giữa các khối */
+.section { padding: 110px 0; }
+.hero { padding: 40px 0 70px; }
+#brew { padding-bottom: 70px; }
+.reviews { padding-bottom: 90px; }
+
+/* Hero: 3 gói canh giữa khung, chạm nhẹ vào nhau (không đè mất chữ), gói nhạt có viền */
+.hero__bags { align-items: center; padding: 0 3%; gap: 0; }
+.hero__bags svg { width: 32%; }
+.hero__bags svg:nth-child(1) { transform: rotate(-6deg) translate(5%, 4%); }
+.hero__bags svg:nth-child(2) { transform: translateY(-3%); }
+.hero__bags svg:nth-child(3) { transform: rotate(6deg) translate(-5%, 5%); }
+.hero__art:hover .hero__bags svg:nth-child(1) { transform: rotate(-9deg) translate(-1%, 3%); }
+.hero__art:hover .hero__bags svg:nth-child(3) { transform: rotate(9deg) translate(1%, 4%); }
+
+/* Thẻ sản phẩm: dòng xuất xứ luôn cao 2 dòng để tên sản phẩm thẳng hàng */
+.card__origin { min-height: 3em; }
+
+/* Đồng nhất bo góc: mọi khối dùng 4px, nút/chip 2px */
+.seg { border-radius: 2px; }
+.seg button { border-radius: 2px; }
+.trace { border-radius: 4px; }
+.trace__form input { border-radius: 2px; }
+.trace__ok { border-radius: 4px; }
+.callout, .spec div, .table-wrap, .toc { border-radius: 4px; }
+.post-cta { border-radius: 4px; }
+.brew__icon { border-radius: 2px; }
+.news { border-radius: 2px; border: 1px solid var(--ink-2); background: transparent; }
+.news button { border-radius: 2px; }
+.cart-count { border-radius: 2px; }
+
+/* Danh sách ✓: dấu tick cố định, chữ xuống dòng thẳng cột */
+.ticks li { display: flex; align-items: flex-start; gap: 10px; }
+.ticks li::before { flex: none; margin-right: 0; margin-top: 2px; }
+
+/* Blog: tiêu đề h2 không bị "balance" cắt ngắn giữa dòng khi còn chỗ */
+.post-body h2 { text-wrap: wrap; max-width: none; }
+
+@media (max-width: 760px) {
+  .section { padding: 72px 0; }
+  .hero { padding: 24px 0 48px; }
+  .hero__inner { gap: 40px; }
+  .quiz__inner { padding-inline: 20px; gap: 32px; }
+  .quiz.section { padding: 40px 0; }
+  .hero__art { aspect-ratio: 1 / 1; }
+}
+@media (max-width: 560px) {
+  /* Nút "Thêm" và ô chọn size: xếp dọc, cao 44px, không bị bẹp */
+  .card__buy select { height: 44px; }
+  .card__add { flex: none; width: 100%; height: 44px; }
+  .card__origin { min-height: 4.5em; }
+  /* Ô nhập mã lô không bị co về 0 khi xếp dọc */
+  .trace__form input { flex: none; width: 100%; height: 50px; }
+  .trace__form .btn { width: 100%; }
+  .plan__row { align-items: flex-start; flex-direction: column; }
+  .footer__bottom { flex-direction: column; }
+}
+
+/* Menu mobile: khoảng cách 40px của desktop không áp cho dropdown; mở đủ 6 mục */
+@media (max-width: 880px) {
+  .nav { gap: 0; }
+  .nav.open { max-height: 480px; }
 }

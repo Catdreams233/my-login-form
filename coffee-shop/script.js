@@ -46,7 +46,7 @@ const products = [
     look: { body: C.paper, band: C.gold, text: C.brown, sub: "#8A6A4D", mark: MARK_LIGHT, shape: "pouch" } },
   { id: 3, line: "CỔ TRUYỀN", cat: "bean", name: "Thanh Tân Cổ Truyền", origin: "Rang xay kiểu phin truyền thống",
     notes: "Đóng gói hoài cổ, gợi nhớ hương vị cà phê xưa.", price: 135000, sizes: "bean", bg: C.gold,
-    look: { body: C.cream, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "pouch" } },
+    look: { body: C.paper, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "pouch" } },
   { id: 4, line: "TƯƠI MỚI", cat: "rtd", name: "Thanh Tân Tươi Mới", origin: "Cold Brew đóng lon",
     notes: "Trẻ trung, tiện lợi, dành cho người trẻ đô thị năng động.", price: 45000, sizes: "rtd", bg: C.forest,
     look: { body: C.paper, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "can" } },
@@ -77,7 +77,7 @@ function bagSVG(p) {
   if (L.shape === "can") {
     return `<svg viewBox="0 0 200 260" aria-hidden="true">
       <rect x="36" y="22" width="128" height="14" rx="5" fill="${L.band}"/>
-      <rect x="38" y="34" width="124" height="196" rx="14" fill="${L.body}"/>
+      <rect x="38" y="34" width="124" height="196" rx="14" fill="${L.body}" stroke="${L.text}" stroke-opacity=".3" stroke-width="1.2"/>
       <rect x="36" y="226" width="128" height="14" rx="5" fill="${L.band}"/>
       <rect x="46" y="48" width="108" height="170" rx="10" fill="none" stroke="${L.text}" stroke-opacity=".18"/>
       ${mark(66)}
@@ -90,7 +90,7 @@ function bagSVG(p) {
   return `<svg viewBox="0 0 200 260" aria-hidden="true">
     <rect x="22" y="14" width="156" height="30" rx="7" fill="${L.band}"/>
     ${crimp}
-    <rect x="22" y="36" width="156" height="214" rx="24" fill="${L.body}"/>
+    <rect x="22" y="36" width="156" height="214" rx="24" fill="${L.body}" stroke="${L.text}" stroke-opacity=".3" stroke-width="1.2"/>
     <rect x="22" y="36" width="156" height="8" fill="${L.band}" opacity=".35"/>
     <rect x="34" y="56" width="132" height="182" rx="16" fill="none" stroke="${L.text}" stroke-opacity=".2"/>
     ${mark(74)}
