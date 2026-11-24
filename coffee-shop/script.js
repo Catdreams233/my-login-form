@@ -52,20 +52,33 @@ const products = [
     look: { body: C.paper, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "can" } },
 ];
 
+
+/* ---------- ICON nét mảnh (thay emoji, theo bảng màu) ---------- */
+const ico = (d) => `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const ICON = {
+  phin: ico('<path d="M5 9h14l-1.5 4h-11z"/><path d="M7 13v3h10v-3"/><path d="M9 5h6"/><path d="M12 16v4"/>'),
+  espresso: ico('<circle cx="12" cy="12" r="8"/><path d="M12 12l3.5-3.5"/><path d="M8 16h8"/>'),
+  pour: ico('<path d="M6 8h12l-1.2 9a2 2 0 0 1-2 1.7H9.2a2 2 0 0 1-2-1.7z"/><path d="M18 10h1.5a2 2 0 0 1 0 4H17.5"/><path d="M9 4.5c0 1 1 1 1 2M13 4.5c0 1 1 1 1 2"/>'),
+  cold: ico('<rect x="5" y="5" width="14" height="14" rx="2"/><path d="M5 10l7-2 7 2"/><path d="M9 14l2 1"/>'),
+  bold: ico('<ellipse cx="12" cy="12" rx="6" ry="8" transform="rotate(25 12 12)"/><path d="M9.5 6.5c3 3 2 8 5 11"/>'),
+  light: ico('<path d="M5 19c0-8 5-13 14-14 0 9-5 14-14 14z"/><path d="M5 19l8-8"/>'),
+  classic: ico('<path d="M7 4h10M7 20h10"/><path d="M8 4c0 5 8 5 8 8s-8 3-8 8M16 4c0 5-8 5-8 8s8 3 8 8"/>'),
+  milk: ico('<path d="M12 4c3 4 5 6.5 5 9.5a5 5 0 0 1-10 0C7 10.500 9 8 12 4z"/>'),
+  black: ico('<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3" fill="currentColor"/>'),
+  tip: ico('<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.500 10.900c.6.5 1 1.200 1 2.100h5c0-.9.4-1.600 1-2.100A6 6 0 0 0 12 3z"/>'),
+  truck: ico('<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/>'),
+  check: ico('<path d="M5 12.500l4.500 4.500L19 7.500"/>'),
+};
+
 let bagUid = 0;
 function bagSVG(p) {
   const L = p.look;
-  const gid = "bg" + (bagUid++);
-  const shade = `<linearGradient id="${gid}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".24"/><stop offset=".38" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".24"/></linearGradient>`;
   const mark = (y) => `<g transform="translate(70 ${y}) scale(.6)">${markSVG(L.mark)}</g>`;
   if (L.shape === "can") {
-    return `<svg viewBox="0 0 200 260" aria-hidden="true"><defs>${shade}</defs>
-      <ellipse cx="100" cy="246" rx="58" ry="5" fill="#000" opacity=".16"/>
+    return `<svg viewBox="0 0 200 260" aria-hidden="true">
       <rect x="36" y="22" width="128" height="14" rx="5" fill="${L.band}"/>
       <rect x="38" y="34" width="124" height="196" rx="14" fill="${L.body}"/>
-      <rect x="38" y="34" width="124" height="196" rx="14" fill="url(#${gid})"/>
       <rect x="36" y="226" width="128" height="14" rx="5" fill="${L.band}"/>
-      <rect x="36" y="22" width="128" height="14" rx="5" fill="url(#${gid})"/>
       <rect x="46" y="48" width="108" height="170" rx="10" fill="none" stroke="${L.text}" stroke-opacity=".18"/>
       ${mark(66)}
       <text x="100" y="150" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="800" font-size="13.5" letter-spacing="2.6" fill="${L.text}">THANH TÂN</text>
@@ -74,12 +87,10 @@ function bagSVG(p) {
     </svg>`;
   }
   const crimp = [18, 22, 26, 30, 34, 38].map((y) => `<line x1="22" x2="178" y1="${y}" y2="${y}" stroke="#000" stroke-opacity=".14"/>`).join("");
-  return `<svg viewBox="0 0 200 260" aria-hidden="true"><defs>${shade}</defs>
-    <ellipse cx="100" cy="253" rx="66" ry="5" fill="#000" opacity=".16"/>
+  return `<svg viewBox="0 0 200 260" aria-hidden="true">
     <rect x="22" y="14" width="156" height="30" rx="7" fill="${L.band}"/>
     ${crimp}
     <rect x="22" y="36" width="156" height="214" rx="24" fill="${L.body}"/>
-    <rect x="22" y="36" width="156" height="214" rx="24" fill="url(#${gid})"/>
     <rect x="22" y="36" width="156" height="8" fill="${L.band}" opacity=".35"/>
     <rect x="34" y="56" width="132" height="182" rx="16" fill="none" stroke="${L.text}" stroke-opacity=".2"/>
     ${mark(74)}
@@ -128,10 +139,10 @@ function landscapeSVG(o) {
 
 /* ---------- DỮ LIỆU: cách pha ---------- */
 const brews = [
-  { icon: "🫖", name: "Phin", color: C.gold, rows: [["Tỉ lệ", "20g : 100ml"], ["Nhiệt độ", "92–94°C"], ["Độ xay", "Vừa – thô"], ["Thời gian", "4–5 phút"]], tip: "Ủ 20ml nước 30 giây cho hạt nở rồi mới rót tiếp. Hợp Nguyên Bản và Cổ Truyền." },
-  { icon: "☕", name: "Pour-over", color: "#B9C9B0", rows: [["Tỉ lệ", "15g : 250ml"], ["Nhiệt độ", "92–93°C"], ["Độ xay", "Vừa – mịn"], ["Thời gian", "2:30–3:00"]], tip: "Rót xoắn ốc 3 lần, hợp dòng Thượng Hạng." },
-  { icon: "⚡", name: "Espresso", color: "#D9B38C", rows: [["Tỉ lệ", "18g → 36g"], ["Nhiệt độ", "93°C"], ["Độ xay", "Mịn"], ["Thời gian", "25–30 giây"]], tip: "Để hạt nghỉ 7 ngày sau rang. Hợp dòng Thượng Hạng." },
-  { icon: "🧊", name: "Cold brew", color: C.cream, rows: [["Tỉ lệ", "100g : 1L"], ["Nước", "Lạnh / thường"], ["Độ xay", "Thô"], ["Thời gian", "16–18 giờ"]], tip: "Ủ trong tủ lạnh, lọc 2 lần, giữ được 7 ngày. Ngại ủ? Đã có dòng Tươi Mới đóng lon." },
+  { icon: ICON.phin, name: "Phin", color: C.gold, rows: [["Tỉ lệ", "20g : 100ml"], ["Nhiệt độ", "92–94°C"], ["Độ xay", "Vừa – thô"], ["Thời gian", "4–5 phút"]], tip: "Ủ 20ml nước 30 giây cho hạt nở rồi mới rót tiếp. Hợp Nguyên Bản và Cổ Truyền." },
+  { icon: ICON.pour, name: "Pour-over", color: "#B9C9B0", rows: [["Tỉ lệ", "15g : 250ml"], ["Nhiệt độ", "92–93°C"], ["Độ xay", "Vừa – mịn"], ["Thời gian", "2:30–3:00"]], tip: "Rót xoắn ốc 3 lần, hợp dòng Thượng Hạng." },
+  { icon: ICON.espresso, name: "Espresso", color: "#D9B38C", rows: [["Tỉ lệ", "18g → 36g"], ["Nhiệt độ", "93°C"], ["Độ xay", "Mịn"], ["Thời gian", "25–30 giây"]], tip: "Để hạt nghỉ 7 ngày sau rang. Hợp dòng Thượng Hạng." },
+  { icon: ICON.cold, name: "Cold brew", color: C.cream, rows: [["Tỉ lệ", "100g : 1L"], ["Nước", "Lạnh / thường"], ["Độ xay", "Thô"], ["Thời gian", "16–18 giờ"]], tip: "Ủ trong tủ lạnh, lọc 2 lần, giữ được 7 ngày. Ngại ủ? Đã có dòng Tươi Mới đóng lon." },
 ];
 
 /* ==========================================================
@@ -215,7 +226,7 @@ function renderCart() {
   $("#cartCount").textContent = count;
   $("#cartTotal").textContent = fmt(total);
   const left = FREESHIP - total;
-  $("#shipText").textContent = left > 0 ? `Mua thêm ${fmt(left)} để được freeship 🚚` : "🎉 Bạn đã được freeship!";
+  $("#shipText").textContent = left > 0 ? `Mua thêm ${fmt(left)} để được freeship` : "Bạn đã được freeship";
   $("#shipBar").style.width = Math.min(100, (total / FREESHIP) * 100) + "%";
   $("#cartItems").innerHTML = cart.length
     ? cart.map((i) => {
@@ -228,7 +239,7 @@ function renderCart() {
           <div class="citem__price">${fmt(i.price * i.qty)}<button data-act="del" data-key="${i.key}">Xoá</button></div>
         </div>`;
       }).join("")
-    : `<div class="cart__empty"><b>Giỏ hàng trống</b>Chọn một dòng cà phê Thanh Tân nhé ☕</div>`;
+    : `<div class="cart__empty"><b>Giỏ hàng trống</b>Chọn một dòng cà phê Thanh Tân nhé.</div>`;
   save();
 }
 
@@ -259,9 +270,9 @@ renderCart();
    QUIZ – tìm gu
    ========================================================== */
 const quiz = [
-  { q: "Bạn thường pha cà phê bằng gì?", key: "tool", opts: [["🫖", "Phin", "phin"], ["⚡", "Máy espresso", "espresso"], ["☕", "Pour-over / V60", "pour"], ["🧊", "Lười – uống liền", "rtd"]] },
-  { q: "Gu vị của bạn là…", key: "taste", opts: [["💪", "Đậm đà, mạnh mẽ", "bold"], ["🌿", "Thơm tinh tế, hậu ngọt dịu", "light"], ["🏮", "Hoài cổ, như cà phê xưa", "classic"]] },
-  { q: "Bạn uống kèm sữa không?", key: "milk", opts: [["🥛", "Có, phải có sữa", "milk"], ["⚫", "Đen nguyên bản", "black"]] },
+  { q: "Bạn thường pha cà phê bằng gì?", key: "tool", opts: [[ICON.phin, "Phin", "phin"], [ICON.espresso, "Máy espresso", "espresso"], [ICON.pour, "Pour-over / V60", "pour"], [ICON.cold, "Lười – uống liền", "rtd"]] },
+  { q: "Gu vị của bạn là…", key: "taste", opts: [[ICON.bold, "Đậm đà, mạnh mẽ", "bold"], [ICON.light, "Thơm tinh tế, hậu ngọt dịu", "light"], [ICON.classic, "Hoài cổ, như cà phê xưa", "classic"]] },
+  { q: "Bạn uống kèm sữa không?", key: "milk", opts: [[ICON.milk, "Có, phải có sữa", "milk"], [ICON.black, "Đen nguyên bản", "black"]] },
 ];
 let qStep = 0, answers = {};
 
@@ -400,10 +411,10 @@ $("#planBtn").addEventListener("click", () => {
    ========================================================== */
 $("#brewGrid").innerHTML = brews.map((b) => `
   <article class="brew">
-    <div class="brew__icon" style="background:${b.color}">${b.icon}</div>
+    <div class="brew__icon">${b.icon}</div>
     <h3>${b.name}</h3>
     <dl>${b.rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>
-    <p>💡 ${b.tip}</p>
+    <p class="brew__tip">${ICON.tip}<span>${b.tip}</span></p>
   </article>`).join("");
 
 /* ==========================================================
