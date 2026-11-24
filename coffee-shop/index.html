@@ -3,258 +3,247 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mộc Coffee – Cà phê rang xay nguyên chất</title>
-  <meta name="description" content="Mộc Coffee – cà phê rang xay nguyên chất từ Cầu Đất, Buôn Ma Thuột. Robusta, Arabica, Culi, cold brew và quà tặng cà phê. Giao hàng toàn quốc." />
+  <title>Mộc Coffee – Cà phê rang mộc, truy xuất từng lô hạt</title>
+  <meta name="description" content="Mộc Coffee – cà phê rang mộc nguyên chất từ Cầu Đất, Buôn Ma Thuột, Sơn La, Khe Sanh. Truy xuất nguồn gốc từng lô, rang mới mỗi tuần, giao toàn quốc." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- ===== THANH THÔNG BÁO (marquee) ===== -->
+  <div class="topbar">
+    <div class="marquee marquee--small">
+      <div class="marquee__track">
+        <span>☕ Freeship đơn từ 300K</span><span>✦ Nhập MOC20 giảm 20% đơn đầu</span><span>🔥 Rang mới mỗi thứ Hai</span><span>✦ Đổi trả 7 ngày</span>
+        <span>☕ Freeship đơn từ 300K</span><span>✦ Nhập MOC20 giảm 20% đơn đầu</span><span>🔥 Rang mới mỗi thứ Hai</span><span>✦ Đổi trả 7 ngày</span>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== HEADER ===== -->
   <header class="header" id="header">
     <div class="container header__inner">
-      <a href="#home" class="logo">
-        <span class="logo__icon">☕</span>
-        <span>Mộc<b>Coffee</b></span>
+      <a href="#top" class="logo" aria-label="Mộc Coffee">
+        <svg viewBox="0 0 40 40" class="logo__mark" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="var(--ink)"/><path d="M20 8c-6 4-6 20 0 24M20 8c6 4 6 20 0 24" stroke="var(--cream)" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+        <span>mộc.</span>
       </a>
       <nav class="nav" id="nav">
-        <a href="#home" class="nav__link active">Trang chủ</a>
-        <a href="#about" class="nav__link">Câu chuyện</a>
-        <a href="#products" class="nav__link">Sản phẩm</a>
-        <a href="#process" class="nav__link">Quy trình</a>
-        <a href="#reviews" class="nav__link">Đánh giá</a>
-        <a href="#contact" class="nav__link">Liên hệ</a>
+        <a href="#shop">Cửa hàng</a>
+        <a href="#quiz">Tìm gu</a>
+        <a href="#origins">Nguồn gốc</a>
+        <a href="#subscribe">Gói định kỳ</a>
+        <a href="#brew">Cách pha</a>
       </nav>
       <div class="header__actions">
-        <button class="cart-btn" id="cartBtn" aria-label="Giỏ hàng">
-          🛒 <span class="cart-count" id="cartCount">0</span>
+        <button class="icon-btn cart-btn" id="cartBtn" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
         </button>
-        <button class="menu-toggle" id="menuToggle" aria-label="Mở menu">☰</button>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Mở menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="home">
-    <div class="container hero__inner">
-      <div class="hero__content reveal">
-        <span class="eyebrow">Rang mộc · Xay tươi · Giao trong ngày</span>
-        <h1>Đánh thức mọi buổi sáng bằng <em>hương cà phê nguyên bản</em></h1>
-        <p>Hạt Robusta & Arabica tuyển chọn từ Buôn Ma Thuột và Cầu Đất, rang mộc 100% – không tẩm, không pha trộn. Đậm vị Việt trong từng giọt.</p>
-        <div class="hero__cta">
-          <a href="#products" class="btn btn--primary">Mua ngay</a>
-          <a href="#about" class="btn btn--ghost">Tìm hiểu thêm</a>
-        </div>
-        <div class="hero__stats">
-          <div><strong>12+</strong><span>Năm kinh nghiệm</span></div>
-          <div><strong>25K+</strong><span>Khách hàng</span></div>
-          <div><strong>4.9★</strong><span>Đánh giá</span></div>
-        </div>
-      </div>
-      <div class="hero__visual reveal">
-        <div class="hero__img" style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=80')"></div>
-        <div class="hero__badge">
-          <span>🌱</span>
-          <div><b>100% nguyên chất</b><small>Chứng nhận an toàn VSTP</small></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FEATURES ===== -->
-  <section class="features">
-    <div class="container features__grid">
-      <div class="feature reveal"><span>🫘</span><h3>Hạt tuyển chọn</h3><p>Chỉ thu hái quả chín đỏ, độ chín trên 95%.</p></div>
-      <div class="feature reveal"><span>🔥</span><h3>Rang thủ công</h3><p>Rang mẻ nhỏ, kiểm soát nhiệt từng phút.</p></div>
-      <div class="feature reveal"><span>🚚</span><h3>Giao toàn quốc</h3><p>Freeship đơn từ 300.000đ, nội thành 2h.</p></div>
-      <div class="feature reveal"><span>💯</span><h3>Đổi trả 7 ngày</h3><p>Không hài lòng – hoàn tiền 100%.</p></div>
-    </div>
-  </section>
-
-  <!-- ===== ABOUT ===== -->
-  <section class="about section" id="about">
-    <div class="container about__inner">
-      <div class="about__images reveal">
-        <div class="about__img about__img--1" style="background-image:url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=700&q=80')"></div>
-        <div class="about__img about__img--2" style="background-image:url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=80')"></div>
-      </div>
-      <div class="about__content reveal">
-        <span class="eyebrow">Câu chuyện của Mộc</span>
-        <h2>Từ nông trại cao nguyên đến tách cà phê của bạn</h2>
-        <p>Mộc Coffee ra đời từ tình yêu với hạt cà phê Việt. Chúng tôi làm việc trực tiếp với hơn 40 hộ nông dân tại Đắk Lắk và Lâm Đồng, thu mua giá công bằng, canh tác bền vững.</p>
-        <p>Mỗi mẻ hạt được rang trong vòng 48 giờ trước khi giao, giữ trọn hương thơm và lớp crema óng ánh mà cà phê công nghiệp không thể có.</p>
-        <ul class="checklist">
-          <li>Không hương liệu, không phụ gia, không bắp đậu</li>
-          <li>Truy xuất nguồn gốc bằng mã QR trên bao bì</li>
-          <li>Đóng gói van một chiều giữ hương 6 tháng</li>
-        </ul>
-        <a href="#products" class="btn btn--primary">Khám phá sản phẩm</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PRODUCTS ===== -->
-  <section class="products section" id="products">
-    <div class="container">
-      <div class="section__head reveal">
-        <span class="eyebrow">Sản phẩm</span>
-        <h2>Bộ sưu tập cà phê Mộc</h2>
-        <p>Chọn hương vị phù hợp với gu của bạn – từ đậm đà truyền thống đến chua thanh hiện đại.</p>
-      </div>
-      <div class="filters reveal" id="filters">
-        <button class="filter active" data-filter="all">Tất cả</button>
-        <button class="filter" data-filter="bean">Cà phê hạt</button>
-        <button class="filter" data-filter="ground">Cà phê bột</button>
-        <button class="filter" data-filter="drink">Pha sẵn</button>
-        <button class="filter" data-filter="gift">Quà tặng</button>
-      </div>
-      <div class="product-grid" id="productGrid"><!-- render bằng JS --></div>
-    </div>
-  </section>
-
-  <!-- ===== PROMO ===== -->
-  <section class="promo">
-    <div class="container promo__inner reveal">
-      <div>
-        <span class="eyebrow eyebrow--light">Ưu đãi tháng này</span>
-        <h2>Giảm 20% cho đơn hàng đầu tiên</h2>
-        <p>Nhập mã <b class="code">MOC20</b> khi thanh toán. Áp dụng đến hết 31/12.</p>
-      </div>
-      <a href="#products" class="btn btn--light">Mua ngay</a>
-    </div>
-  </section>
-
-  <!-- ===== PROCESS ===== -->
-  <section class="process section" id="process">
-    <div class="container">
-      <div class="section__head reveal">
-        <span class="eyebrow">Quy trình</span>
-        <h2>4 bước tạo nên hạt cà phê hoàn hảo</h2>
-      </div>
-      <div class="steps">
-        <div class="step reveal"><span class="step__num">01</span><h3>Thu hái</h3><p>Hái tay chọn lọc quả chín đỏ vào mùa vụ tháng 10 – 12.</p></div>
-        <div class="step reveal"><span class="step__num">02</span><h3>Sơ chế</h3><p>Phơi giàn hoặc sơ chế ướt (washed) theo từng dòng hạt.</p></div>
-        <div class="step reveal"><span class="step__num">03</span><h3>Rang mộc</h3><p>Rang mẻ nhỏ 5kg, mỗi profile được tinh chỉnh riêng.</p></div>
-        <div class="step reveal"><span class="step__num">04</span><h3>Đóng gói</h3><p>Đóng túi van 1 chiều, giao đến bạn trong 48h sau rang.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== REVIEWS ===== -->
-  <section class="reviews section" id="reviews">
-    <div class="container">
-      <div class="section__head reveal">
-        <span class="eyebrow">Khách hàng nói gì</span>
-        <h2>Được hơn 25.000 người yêu cà phê tin chọn</h2>
-      </div>
-      <div class="review-grid">
-        <figure class="review reveal">
-          <div class="stars">★★★★★</div>
-          <blockquote>“Robusta Honey của Mộc pha phin cực thơm, hậu ngọt rõ. Mình đã bỏ hẳn cà phê gói siêu thị.”</blockquote>
-          <figcaption><span class="avatar">LH</span><div><b>Lan Hương</b><small>Quận 3, TP.HCM</small></div></figcaption>
-        </figure>
-        <figure class="review reveal">
-          <div class="stars">★★★★★</div>
-          <blockquote>“Quán mình nhập Arabica Cầu Đất từ Mộc 2 năm nay, chất lượng ổn định, khách khen liên tục.”</blockquote>
-          <figcaption><span class="avatar">MT</span><div><b>Minh Tuấn</b><small>Chủ quán – Đà Nẵng</small></div></figcaption>
-        </figure>
-        <figure class="review reveal">
-          <div class="stars">★★★★★</div>
-          <blockquote>“Hộp quà Tết đóng gói sang, đối tác rất thích. Giao hàng nhanh, tư vấn nhiệt tình.”</blockquote>
-          <figcaption><span class="avatar">TA</span><div><b>Thu Anh</b><small>Hà Nội</small></div></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT ===== -->
-  <section class="contact section" id="contact">
-    <div class="container contact__inner">
-      <div class="contact__info reveal">
-        <span class="eyebrow">Liên hệ</span>
-        <h2>Ghé thăm cửa hàng hoặc đặt hàng sỉ</h2>
-        <p>Nhận tư vấn chọn hạt, máy pha và báo giá sỉ cho quán cà phê, văn phòng.</p>
-        <ul class="contact__list">
-          <li><span>📍</span> 123 Nguyễn Huệ, Quận 1, TP.HCM</li>
-          <li><span>📞</span> 0909 123 456</li>
-          <li><span>✉️</span> hello@moccoffee.vn</li>
-          <li><span>🕐</span> 7:00 – 22:00, tất cả các ngày</li>
-        </ul>
-      </div>
-      <form class="contact__form reveal" id="contactForm" novalidate>
-        <div class="field">
-          <label for="name">Họ và tên</label>
-          <input id="name" name="name" type="text" placeholder="Nguyễn Văn A" required />
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="phone">Số điện thoại</label>
-            <input id="phone" name="phone" type="tel" placeholder="09xx xxx xxx" required />
+  <main id="top">
+    <!-- ===== HERO: Single O (màu mạnh, minh họa) + Ceremony (typography sạch) ===== -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <span class="pill">Rang mộc · Truy xuất từng lô</span>
+          <h1>Cà phê ngon<br/>không cần<br/><em>cầu kỳ.</em></h1>
+          <p>Hạt Việt từ 4 vùng trồng, rang mẻ nhỏ mỗi tuần, ghi rõ nông trại – độ cao – ngày rang trên từng túi. Bạn chỉ việc pha và thưởng thức.</p>
+          <div class="hero__cta">
+            <a href="#shop" class="btn btn--dark">Mua cà phê</a>
+            <a href="#quiz" class="btn btn--line">Tìm gu của tôi →</a>
           </div>
-          <div class="field">
-            <label for="type">Nhu cầu</label>
-            <select id="type" name="type">
-              <option>Mua lẻ</option>
-              <option>Đặt sỉ cho quán</option>
-              <option>Quà tặng doanh nghiệp</option>
-            </select>
+          <ul class="hero__proof">
+            <li><b>4.9/5</b> từ 3.200+ đánh giá</li>
+            <li><b>48h</b> từ lò rang tới tay bạn</li>
+          </ul>
+        </div>
+        <div class="hero__art" aria-hidden="true">
+          <div class="hero__blob"></div>
+          <div class="hero__bags" id="heroBags"></div>
+          <div class="sticker">
+            <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text><textPath href="#circ" textLength="272" lengthAdjust="spacing">RANG MỚI MỖI TUẦN ✦ RANG MỚI ✦</textPath></text></svg>
+            <span>☕</span>
           </div>
         </div>
-        <div class="field">
-          <label for="msg">Lời nhắn</label>
-          <textarea id="msg" name="msg" rows="4" placeholder="Bạn cần tư vấn gì?"></textarea>
-        </div>
-        <button type="submit" class="btn btn--primary btn--block">Gửi yêu cầu</button>
-        <p class="form-note" id="formNote"></p>
-      </form>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- ===== FOOTER ===== -->
+    <!-- ===== MARQUEE NOTES: Single O ===== -->
+    <section class="notes-band" aria-label="Hương vị">
+      <div class="marquee">
+        <div class="marquee__track">
+          <span>Socola đen</span><i>✦</i><span>Caramel</span><i>✦</i><span>Cam vàng</span><i>✦</i><span>Hoa nhài</span><i>✦</i><span>Mật ong rừng</span><i>✦</i><span>Hạt dẻ</span><i>✦</i>
+          <span>Socola đen</span><i>✦</i><span>Caramel</span><i>✦</i><span>Cam vàng</span><i>✦</i><span>Hoa nhài</span><i>✦</i><span>Mật ong rừng</span><i>✦</i><span>Hạt dẻ</span><i>✦</i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SHOP: Ceremony (sạch, thoáng, chọn size) ===== -->
+    <section class="section" id="shop">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="kicker">01 — Cửa hàng</span>
+            <h2>Rang tuần này</h2>
+          </div>
+          <div class="filters" id="filters" role="tablist">
+            <button class="chip active" data-filter="all">Tất cả</button>
+            <button class="chip" data-filter="single">Single origin</button>
+            <button class="chip" data-filter="blend">Blend</button>
+            <button class="chip" data-filter="rtd">Pha sẵn</button>
+            <button class="chip" data-filter="gift">Quà tặng</button>
+          </div>
+        </div>
+        <div class="grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== QUIZ: Single O (vui, tương tác) ===== -->
+    <section class="section quiz" id="quiz">
+      <div class="container quiz__inner">
+        <div class="quiz__intro">
+          <span class="kicker kicker--light">02 — Tìm gu</span>
+          <h2>Không biết chọn gì?<br/>3 câu là xong.</h2>
+          <p>Trả lời nhanh, Mộc gợi ý đúng túi hạt hợp khẩu vị và dụng cụ pha của bạn.</p>
+        </div>
+        <div class="quiz__card" id="quizCard"></div>
+      </div>
+    </section>
+
+    <!-- ===== ORIGINS: Escape (kể chuyện nguồn gốc, minh bạch) ===== -->
+    <section class="section" id="origins">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="kicker">03 — Nguồn gốc</span>
+            <h2>Biết rõ hạt đến từ đâu</h2>
+          </div>
+          <p class="section__lead">Mộc mua trực tiếp từ 42 hộ nông dân, trả cao hơn giá thị trường 20–35%. Mỗi vùng một câu chuyện, một hương vị.</p>
+        </div>
+        <div class="origin-tabs" id="originTabs" role="tablist"></div>
+        <div class="origin" id="originPanel"></div>
+
+        <!-- Truy xuất lô -->
+        <div class="trace">
+          <div>
+            <h3>Truy xuất lô hạt của bạn</h3>
+            <p>Nhập mã in dưới đáy túi để xem nông trại, ngày thu hái và ngày rang.</p>
+          </div>
+          <form class="trace__form" id="traceForm">
+            <input id="traceInput" type="text" placeholder="VD: MOC-CD-2611" aria-label="Mã lô" />
+            <button class="btn btn--dark" type="submit">Tra cứu</button>
+          </form>
+          <div class="trace__result" id="traceResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SUBSCRIBE: Ceremony + Single O ===== -->
+    <section class="section subscribe" id="subscribe">
+      <div class="container subscribe__inner">
+        <div>
+          <span class="kicker">04 — Gói định kỳ</span>
+          <h2>Không bao giờ hết cà phê.</h2>
+          <p class="section__lead">Hạt mới rang giao tận nhà theo lịch của bạn. Tiết kiệm 15%, freeship mọi đơn, tạm dừng hoặc huỷ bất cứ lúc nào.</p>
+          <ul class="ticks">
+            <li>Đổi loại hạt mỗi kỳ – thử cả 4 vùng trồng</li>
+            <li>Ưu tiên lô hạt giới hạn (micro-lot)</li>
+            <li>Tặng phin đồng khi đăng ký 3 tháng</li>
+          </ul>
+        </div>
+        <div class="plan" id="plan">
+          <div class="plan__row">
+            <span>Giao mỗi</span>
+            <div class="seg" id="freqSeg">
+              <button data-v="1">1 tuần</button><button data-v="2" class="active">2 tuần</button><button data-v="4">4 tuần</button>
+            </div>
+          </div>
+          <div class="plan__row">
+            <span>Khối lượng</span>
+            <div class="seg" id="sizeSeg">
+              <button data-v="250" class="active">250g</button><button data-v="500">500g</button><button data-v="1000">1kg</button>
+            </div>
+          </div>
+          <div class="plan__price">
+            <div><small>Mỗi lần giao</small><b id="planPrice">—</b></div>
+            <s id="planOld">—</s>
+          </div>
+          <p class="plan__note" id="planNote"></p>
+          <button class="btn btn--dark btn--block" id="planBtn">Đăng ký gói</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BREW GUIDES: Ceremony ===== -->
+    <section class="section" id="brew">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="kicker">05 — Cách pha</span>
+            <h2>Pha ngon tại nhà</h2>
+          </div>
+          <p class="section__lead">Công thức chuẩn từ barista của Mộc. Lưu lại và thử ngay sáng mai.</p>
+        </div>
+        <div class="brew-grid" id="brewGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== REVIEWS ===== -->
+    <section class="section reviews">
+      <div class="container">
+        <span class="kicker">Khách nói</span>
+        <div class="review-row">
+          <blockquote><p>“Robusta Honey pha phin thơm nức cả nhà. Thích nhất là biết rõ hạt từ vườn nhà ai.”</p><cite>Lan Hương · TP.HCM</cite></blockquote>
+          <blockquote><p>“Quán mình dùng Arabica Cầu Đất 2 năm, chất lượng ổn định từng lô. Khách khen liên tục.”</p><cite>Minh Tuấn · Chủ quán, Đà Nẵng</cite></blockquote>
+          <blockquote><p>“Gói định kỳ tiện cực, mỗi kỳ một vùng mới. Như đi du lịch bằng vị giác.”</p><cite>Thu Anh · Hà Nội</cite></blockquote>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER: Single O (khối màu, wordmark lớn) ===== -->
   <footer class="footer">
-    <div class="container footer__grid">
-      <div>
-        <a href="#home" class="logo logo--light"><span class="logo__icon">☕</span><span>Mộc<b>Coffee</b></span></a>
-        <p>Cà phê rang xay nguyên chất – đậm vị cao nguyên Việt Nam.</p>
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__news">
+          <h3>Nhận tin lô hạt mới & ưu đãi</h3>
+          <form class="news" id="newsForm">
+            <input type="email" placeholder="Email của bạn" aria-label="Email" required />
+            <button type="submit">Đăng ký</button>
+          </form>
+        </div>
+        <div class="footer__cols">
+          <div><h4>Cửa hàng</h4><a href="#shop">Single origin</a><a href="#shop">Blend</a><a href="#shop">Pha sẵn</a><a href="#shop">Quà tặng</a></div>
+          <div><h4>Mộc</h4><a href="#origins">Nguồn gốc</a><a href="#brew">Cách pha</a><a href="#subscribe">Gói định kỳ</a></div>
+          <div><h4>Liên hệ</h4><a href="tel:0909123456">0909 123 456</a><a href="mailto:hello@moccoffee.vn">hello@moccoffee.vn</a><span>123 Nguyễn Huệ, Q.1, TP.HCM</span></div>
+        </div>
       </div>
-      <div>
-        <h4>Sản phẩm</h4>
-        <a href="#products">Cà phê hạt</a><a href="#products">Cà phê bột</a><a href="#products">Cold brew</a><a href="#products">Quà tặng</a>
-      </div>
-      <div>
-        <h4>Hỗ trợ</h4>
-        <a href="#">Chính sách giao hàng</a><a href="#">Đổi trả</a><a href="#">Hướng dẫn pha</a><a href="#contact">Liên hệ</a>
-      </div>
-      <div>
-        <h4>Nhận ưu đãi</h4>
-        <form class="newsletter" id="newsletter">
-          <input type="email" placeholder="Email của bạn" required />
-          <button type="submit">→</button>
-        </form>
-      </div>
+      <div class="footer__word" aria-hidden="true">mộc.</div>
+      <div class="footer__bottom"><span>© <span id="year"></span> Mộc Coffee</span><span>Rang mộc tại Sài Gòn ✦ Hạt từ cao nguyên Việt</span></div>
     </div>
-    <div class="container footer__bottom">© <span id="year"></span> Mộc Coffee. All rights reserved.</div>
   </footer>
 
-  <!-- ===== CART DRAWER ===== -->
+  <!-- ===== CART ===== -->
   <div class="overlay" id="overlay"></div>
   <aside class="cart" id="cart" aria-label="Giỏ hàng">
-    <div class="cart__head">
-      <h3>Giỏ hàng</h3>
-      <button class="cart__close" id="cartClose" aria-label="Đóng">✕</button>
-    </div>
+    <div class="cart__head"><h3>Giỏ hàng</h3><button class="icon-btn" id="cartClose" aria-label="Đóng">✕</button></div>
+    <div class="ship" id="ship"><p id="shipText"></p><div class="ship__bar"><span id="shipBar"></span></div></div>
     <div class="cart__items" id="cartItems"></div>
     <div class="cart__foot">
-      <div class="cart__total"><span>Tổng cộng</span><b id="cartTotal">0đ</b></div>
-      <button class="btn btn--primary btn--block" id="checkoutBtn">Thanh toán</button>
+      <div class="cart__total"><span>Tạm tính</span><b id="cartTotal">0đ</b></div>
+      <button class="btn btn--dark btn--block" id="checkoutBtn">Thanh toán</button>
     </div>
   </aside>
 
-  <div class="toast" id="toast"></div>
-  <button class="to-top" id="toTop" aria-label="Lên đầu trang">↑</button>
-
+  <div class="toast" id="toast" role="status"></div>
   <script src="script.js"></script>
 </body>
 </html>
