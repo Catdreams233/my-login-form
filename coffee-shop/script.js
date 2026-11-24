@@ -39,16 +39,16 @@ const SIZES = {
 // look: màu bao bì. Nền bao bì luôn là nâu đất hoặc trắng ngà, mỗi dòng có một màu điểm nhấn riêng.
 const products = [
   { id: 1, line: "NGUYÊN BẢN", cat: "bean", name: "Thanh Tân Nguyên Bản", origin: "Robusta Buôn Ma Thuột · Rang mộc",
-    notes: "Đậm vị truyền thống, dành cho người yêu cà phê phin đậm đà.", price: 165000, sizes: "bean", bg: C.cream,
+    flavor: ["Đậm đà", "Rang mộc", "Vị truyền thống"], body: 5, notes: "Đậm vị truyền thống, dành cho người yêu cà phê phin đậm đà.", price: 165000, sizes: "bean", bg: C.cream,
     look: { body: C.brown, band: C.ink, text: C.paper, sub: "#D9C7A5", mark: MARK_DARK, shape: "pouch" } },
   { id: 2, line: "THƯỢNG HẠNG", cat: "bean", name: "Thanh Tân Thượng Hạng", origin: "Arabica Cầu Đất pha Robusta Buôn Ma Thuột",
-    notes: "Hương thơm tinh tế, hậu vị ngọt dịu.", price: 195000, sizes: "bean", bg: C.brown,
+    flavor: ["Thơm tinh tế", "Hậu ngọt dịu", "Arabica Cầu Đất"], body: 3, notes: "Hương thơm tinh tế, hậu vị ngọt dịu.", price: 195000, sizes: "bean", bg: C.brown,
     look: { body: C.paper, band: C.gold, text: C.brown, sub: "#8A6A4D", mark: MARK_LIGHT, shape: "pouch" } },
   { id: 3, line: "CỔ TRUYỀN", cat: "bean", name: "Thanh Tân Cổ Truyền", origin: "Rang xay kiểu phin truyền thống",
-    notes: "Đóng gói hoài cổ, gợi nhớ hương vị cà phê xưa.", price: 135000, sizes: "bean", bg: C.gold,
+    flavor: ["Phin truyền thống", "Hoài cổ", "Rang xay"], body: 4, notes: "Đóng gói hoài cổ, gợi nhớ hương vị cà phê xưa.", price: 135000, sizes: "bean", bg: C.gold,
     look: { body: C.paper, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "pouch" } },
   { id: 4, line: "TƯƠI MỚI", cat: "rtd", name: "Thanh Tân Tươi Mới", origin: "Cold Brew đóng lon",
-    notes: "Trẻ trung, tiện lợi, dành cho người trẻ đô thị năng động.", price: 45000, sizes: "rtd", bg: C.forest,
+    flavor: ["Cold brew", "Thanh mát", "Mở lon là uống"], body: 2, notes: "Trẻ trung, tiện lợi, dành cho người trẻ đô thị năng động.", price: 45000, sizes: "rtd", bg: C.forest,
     look: { body: C.paper, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "can" } },
 ];
 
@@ -163,6 +163,8 @@ function cardHTML(p, i = 0) {
     <span class="card__origin">${p.origin}</span>
     <h3>${p.name}</h3>
     <p class="card__notes">${p.notes}</p>
+    <ul class="card__tags">${p.flavor.map((t) => `<li>${t}</li>`).join("")}</ul>
+    <div class="card__meter" role="img" aria-label="Độ đậm ${p.body} trên 5"><span>Độ đậm</span><i>${[1, 2, 3, 4, 5].map((n) => `<b class="${n <= p.body ? "on" : ""}"></b>`).join("")}</i></div>
     <div class="card__buy">
       ${sizes.length > 1 ? `<select aria-label="Chọn khối lượng">${sizes.map((s, k) => `<option value="${k}">${s.label}</option>`).join("")}</select>` : ""}
       <button class="card__add"><span>Thêm</span><b>${fmt(p.price)}</b></button>
@@ -449,3 +451,9 @@ $("#newsForm").addEventListener("submit", (e) => {
 });
 
 $("#year").textContent = new Date().getFullYear();
+
+/* Hero: giá khởi điểm lấy từ dữ liệu sản phẩm */
+{
+  const from = $("#heroFrom");
+  if (from) from.textContent = `Từ ${fmt(Math.min(...products.filter((p) => p.cat === "bean").map((p) => p.price)))} / 250g`;
+}

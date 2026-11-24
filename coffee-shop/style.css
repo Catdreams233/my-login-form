@@ -539,3 +539,68 @@ h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: .1em; font-weight: 6
   .nav { gap: 0; }
   .nav.open { max-height: 480px; }
 }
+
+
+/* ================= Giai đoạn 1 ================= */
+/* 1) Header + topbar gọn hơn (logo vẫn >= 80px theo guideline) */
+.topbar { padding: 5px 0; font-size: .78rem; }
+.header__inner { height: 92px; }
+.logo__mark { width: 80px; height: 80px; }
+
+/* 2) Hero: khung thấp hơn, bao bì lớn hơn, thấy sản phẩm ngay trong màn hình đầu */
+.hero { padding: 24px 0 48px; }
+.hero__art { aspect-ratio: 5 / 4; max-width: 600px; }
+.hero__bags { padding: 0 2%; }
+.hero__bags svg { width: 34%; }
+.hero__cta { align-items: center; margin-bottom: 32px; }
+.hero__from { font-weight: 600; color: var(--ink-2); font-size: .92rem; margin-left: 6px; }
+#shop.section { padding-top: 72px; }
+
+/* 3) Câu chủ đề: phần "thuở ban đầu" đậm hơn, màu nâu đất */
+.hero h1 em { font-weight: 700; color: var(--brown); }
+
+/* 4) Thẻ sản phẩm: nốt hương + độ đậm */
+.card__tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.card__tags li { font-size: .74rem; font-weight: 600; color: var(--brown); border: 1px solid var(--line); border-radius: 2px; padding: 3px 8px; }
+.card__meter { display: flex; align-items: center; justify-content: space-between; font-size: .8rem; font-weight: 600; color: var(--ink-2); margin-bottom: 16px; }
+.card__meter i { display: flex; gap: 4px; }
+.card__meter b { width: 22px; height: 6px; border-radius: 1px; background: var(--line); }
+.card__meter b.on { background: var(--brown); }
+
+/* 5) Nhịp nền: xen kẽ sáng / kem / nâu đậm để có điểm nhấn thị giác */
+.subscribe { background: var(--brown); color: var(--paper); border: 0; }
+.subscribe h2, .subscribe .section__lead, .subscribe .ticks { color: var(--paper); opacity: 1; }
+.subscribe .section__lead { opacity: .85; }
+.subscribe .ticks li::before { background: var(--gold); color: var(--ink); }
+.subscribe .plan { background: var(--paper); color: var(--ink); border: 0; }
+.reviews { background: var(--cream); padding: 90px 0; }
+.footer { background: var(--ink); color: var(--paper); border: 0; }
+.footer__word { color: var(--gold); opacity: .9; }
+.footer__bottom { border-color: rgba(245, 239, 224, .25); }
+.footer .news { border-color: rgba(245, 239, 224, .5); background: transparent; }
+.footer .news input { color: var(--paper); }
+.footer .news input::placeholder { color: rgba(245, 239, 224, .6); }
+.footer .news button { background: var(--gold); color: var(--ink); }
+
+@media (max-width: 760px) {
+  .header__inner { height: 84px; }
+  .logo__mark { width: 80px; height: 80px; }
+  .hero__art { aspect-ratio: 1 / 1; }
+  .hero__from { display: block; margin: 6px 0 0; width: 100%; }
+  .reviews { padding: 64px 0; }
+}
+@media (max-width: 560px) {
+  .card__origin { min-height: 4.5em; }
+}
+
+/* Nốt hương: chừa chỗ 2 hàng để thanh "Độ đậm" thẳng hàng giữa các thẻ */
+.card__tags { min-height: 62px; align-content: flex-start; }
+@media (max-width: 560px) { .card__tags { min-height: 92px; } }
+.card__notes { min-height: 3.1em; }
+.footer__word { opacity: .7; }
+.card__meter span { white-space: nowrap; }
+@media (max-width: 560px) {
+  .card__meter { gap: 8px; }
+  .card__meter i { gap: 3px; }
+  .card__meter b { width: 13px; }
+}
