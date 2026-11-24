@@ -74,7 +74,26 @@
           </ul>
         </div>
         <div class="hero__art" aria-hidden="true">
-          <div class="hero__blob"></div>
+          <div class="hero__scene">
+            <svg viewBox="0 0 500 625" preserveAspectRatio="xMidYMax slice">
+              <defs>
+                <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E3D1A4"/><stop offset=".7" stop-color="#F3EBD6"/></linearGradient>
+                <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F5EFE0" stop-opacity="0"/><stop offset="1" stop-color="#F5EFE0" stop-opacity=".85"/></linearGradient>
+              </defs>
+              <rect width="500" height="625" fill="url(#sky)"/>
+              <g class="rings" fill="none" stroke="#6B3410">
+                <circle cx="250" cy="310" r="150" stroke-opacity=".22"/><circle cx="250" cy="310" r="185" stroke-opacity=".17"/>
+                <circle cx="250" cy="310" r="220" stroke-opacity=".12"/><circle cx="250" cy="310" r="255" stroke-opacity=".08"/>
+                <circle cx="250" cy="310" r="290" stroke-opacity=".05"/>
+              </g>
+              <circle class="sun" cx="250" cy="310" r="118" fill="#C9A227"/>
+              <path d="M0 430Q110 372 230 410T500 392V625H0Z" fill="#B9783F"/>
+              <rect y="380" width="500" height="80" fill="url(#mist)"/>
+              <path d="M0 492Q150 440 300 482T500 462V625H0Z" fill="#6B3410"/>
+              <g fill="#3A1F0D" opacity=".28"><circle cx="40" cy="520" r="6"/><circle cx="92" cy="512" r="7"/><circle cx="148" cy="520" r="6"/><circle cx="206" cy="528" r="7"/><circle cx="268" cy="534" r="6"/><circle cx="330" cy="528" r="7"/><circle cx="392" cy="518" r="6"/><circle cx="450" cy="508" r="7"/></g>
+              <path d="M0 574Q200 534 500 566V625H0Z" fill="#3A1F0D"/>
+            </svg>
+          </div>
           <div class="hero__bags" id="heroBags"></div>
           <div class="sticker">
             <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text><textPath href="#circ" textLength="272" lengthAdjust="spacing">RANG MỚI MỖI NGÀY ✦ THANH TÂN ✦</textPath></text></svg>
@@ -99,7 +118,6 @@
       <div class="container">
         <div class="section__head">
           <div>
-            <span class="kicker">01 — Dòng sản phẩm</span>
             <h2>Bốn dòng Thanh Tân</h2>
           </div>
           <div class="filters" id="filters" role="tablist">
@@ -116,7 +134,6 @@
     <section class="section quiz" id="quiz">
       <div class="container quiz__inner">
         <div class="quiz__intro">
-          <span class="kicker kicker--light">02 — Tìm gu</span>
           <h2>Không biết chọn gì?<br/>3 câu là xong.</h2>
           <p>Trả lời nhanh, Thanh Tân gợi ý đúng dòng cà phê hợp khẩu vị và cách pha của bạn.</p>
         </div>
@@ -129,7 +146,6 @@
       <div class="container">
         <div class="section__head">
           <div>
-            <span class="kicker">03 — Nguồn gốc</span>
             <h2>Từ đất bazan Tây Nguyên</h2>
           </div>
           <p class="section__lead">Thanh — như dòng nước đầu nguồn Đắk Lắk, không lẫn tạp chất. Tân — như hạt cà phê vừa hái, vừa rang lên mỗi sớm mai.</p>
@@ -156,7 +172,6 @@
     <section class="section subscribe" id="subscribe">
       <div class="container subscribe__inner">
         <div>
-          <span class="kicker">04 — Gói định kỳ</span>
           <h2>Không bao giờ hết cà phê.</h2>
           <p class="section__lead">Hạt mới rang giao tận nhà theo lịch của bạn. Tiết kiệm 15%, freeship mọi đơn, tạm dừng hoặc huỷ bất cứ lúc nào.</p>
           <ul class="ticks">
@@ -193,7 +208,6 @@
       <div class="container">
         <div class="section__head">
           <div>
-            <span class="kicker">05 — Cách pha</span>
             <h2>Pha chậm rãi, trọn vị</h2>
           </div>
           <p class="section__lead">Công thức chuẩn để một tách cà phê giữ trọn hương vị nguyên bản. Lưu lại và thử ngay sáng mai.</p>
@@ -206,7 +220,6 @@
     <!-- ===== LỜI NÓI THƯƠNG HIỆU ===== -->
     <section class="section reviews">
       <div class="container">
-        <span class="kicker">Thanh Tân nói</span>
         <div class="review-row">
           <blockquote><p>“Từ đất bazan, thanh tân vạn dặm.”</p><cite>Trên bao bì sản phẩm</cite></blockquote>
           <blockquote><p>“Ngồi lại, nhấp một ngụm thanh tân.”</p><cite>Tại không gian quán cà phê</cite></blockquote>

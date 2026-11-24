@@ -52,28 +52,40 @@ const products = [
     look: { body: C.paper, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "can" } },
 ];
 
+let bagUid = 0;
 function bagSVG(p) {
   const L = p.look;
+  const gid = "bg" + (bagUid++);
+  const shade = `<linearGradient id="${gid}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".24"/><stop offset=".38" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".24"/></linearGradient>`;
   const mark = (y) => `<g transform="translate(70 ${y}) scale(.6)">${markSVG(L.mark)}</g>`;
   if (L.shape === "can") {
-    return `<svg viewBox="0 0 200 260" aria-hidden="true">
+    return `<svg viewBox="0 0 200 260" aria-hidden="true"><defs>${shade}</defs>
+      <ellipse cx="100" cy="246" rx="58" ry="5" fill="#000" opacity=".16"/>
       <rect x="36" y="22" width="128" height="14" rx="5" fill="${L.band}"/>
       <rect x="38" y="34" width="124" height="196" rx="14" fill="${L.body}"/>
+      <rect x="38" y="34" width="124" height="196" rx="14" fill="url(#${gid})"/>
       <rect x="36" y="226" width="128" height="14" rx="5" fill="${L.band}"/>
+      <rect x="36" y="22" width="128" height="14" rx="5" fill="url(#${gid})"/>
+      <rect x="46" y="48" width="108" height="170" rx="10" fill="none" stroke="${L.text}" stroke-opacity=".18"/>
       ${mark(66)}
       <text x="100" y="150" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="800" font-size="13.5" letter-spacing="2.6" fill="${L.text}">THANH TÂN</text>
       <text x="100" y="168" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="8.5" letter-spacing="2.2" fill="${L.sub}">${p.line}</text>
-      <text x="100" y="210" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="7" letter-spacing="1.6" fill="${L.sub}">COLD BREW</text>
+      <text x="100" y="206" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="7" letter-spacing="1.6" fill="${L.sub}">COLD BREW</text>
     </svg>`;
   }
-  return `<svg viewBox="0 0 200 260" aria-hidden="true">
+  const crimp = [18, 22, 26, 30, 34, 38].map((y) => `<line x1="22" x2="178" y1="${y}" y2="${y}" stroke="#000" stroke-opacity=".14"/>`).join("");
+  return `<svg viewBox="0 0 200 260" aria-hidden="true"><defs>${shade}</defs>
+    <ellipse cx="100" cy="253" rx="66" ry="5" fill="#000" opacity=".16"/>
     <rect x="22" y="14" width="156" height="30" rx="7" fill="${L.band}"/>
-    <rect x="22" y="36" width="156" height="212" rx="24" fill="${L.body}"/>
+    ${crimp}
+    <rect x="22" y="36" width="156" height="214" rx="24" fill="${L.body}"/>
+    <rect x="22" y="36" width="156" height="214" rx="24" fill="url(#${gid})"/>
     <rect x="22" y="36" width="156" height="8" fill="${L.band}" opacity=".35"/>
+    <rect x="34" y="56" width="132" height="182" rx="16" fill="none" stroke="${L.text}" stroke-opacity=".2"/>
     ${mark(74)}
     <text x="100" y="156" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="800" font-size="15" letter-spacing="3" fill="${L.text}">THANH TÂN</text>
     <text x="100" y="174" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="8.5" letter-spacing="2.2" fill="${L.sub}">${p.line}</text>
-    <text x="100" y="228" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="7" letter-spacing="1.4" fill="${L.sub}">BUÔN MA THUỘT · ĐẮK LẮK</text>
+    <text x="100" y="226" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="7" letter-spacing="1.4" fill="${L.sub}">BUÔN MA THUỘT · ĐẮK LẮK</text>
   </svg>`;
 }
 
@@ -136,7 +148,7 @@ const priceOf = (p, i) => round(p.price * SIZES[p.sizes][i].m);
 function cardHTML(p, i = 0) {
   const sizes = SIZES[p.sizes];
   return `<article class="card" style="animation-delay:${i * 50}ms" data-id="${p.id}">
-    <div class="card__media" style="background:${p.bg}">${bagSVG(p)}</div>
+    <div class="card__media" style="--disc:${p.bg}">${bagSVG(p)}</div>
     <span class="card__origin">${p.origin}</span>
     <h3>${p.name}</h3>
     <p class="card__notes">${p.notes}</p>
@@ -272,7 +284,7 @@ function renderQuiz() {
   const [id, why] = recommend(answers);
   const p = products.find((x) => x.id === id);
   card.innerHTML = `${bar}<div class="quiz__result">
-      <div class="card__media" style="background:${p.bg}">${bagSVG(p)}</div>
+      <div class="card__media" style="--disc:${p.bg}">${bagSVG(p)}</div>
       <div><span class="kicker">Gu của bạn là</span><h4>${p.name}</h4><p>${why}</p><b>${fmt(p.price)}</b></div>
     </div>
     <div class="quiz__actions"><button class="btn btn--dark" id="quizAdd">Thêm vào giỏ</button><button class="link-btn" id="quizRedo">Làm lại</button></div>`;
@@ -387,7 +399,7 @@ $("#planBtn").addEventListener("click", () => {
    CÁCH PHA
    ========================================================== */
 $("#brewGrid").innerHTML = brews.map((b) => `
-  <article class="brew reveal">
+  <article class="brew">
     <div class="brew__icon" style="background:${b.color}">${b.icon}</div>
     <h3>${b.name}</h3>
     <dl>${b.rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>
@@ -418,11 +430,6 @@ window.addEventListener("scroll", () => {
   $$("a", nav).forEach((a) => a.classList.toggle("active", !!cur && a.getAttribute("href") === "#" + cur.id));
 }, { passive: true });
 
-$$(".section__head, .origin, .trace, .plan, .review-row blockquote, .quiz__inner").forEach((el) => el.classList.add("reveal"));
-const io = new IntersectionObserver((ents) => ents.forEach((en) => {
-  if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target); }
-}), { threshold: 0.1 });
-$$(".reveal").forEach((el) => io.observe(el));
 
 $("#newsForm").addEventListener("submit", (e) => {
   e.preventDefault();
