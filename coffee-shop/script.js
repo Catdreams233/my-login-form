@@ -76,12 +76,12 @@ function bagSVG(p) {
   const mark = (y) => `<g transform="translate(70 ${y}) scale(.6)">${markSVG(L.mark)}</g>`;
   if (L.shape === "can") {
     return `<svg viewBox="0 0 200 260" aria-hidden="true">
-      <rect x="36" y="22" width="128" height="14" rx="5" fill="${L.band}"/>
-      <rect x="38" y="34" width="124" height="196" rx="14" fill="${L.body}" stroke="${L.text}" stroke-opacity=".3" stroke-width="1.2"/>
-      <rect x="36" y="226" width="128" height="14" rx="5" fill="${L.band}"/>
-      <rect x="46" y="48" width="108" height="170" rx="10" fill="none" stroke="${L.text}" stroke-opacity=".18"/>
+      <rect x="20" y="14" width="160" height="18" rx="4" fill="${L.band}"/>
+      <rect x="24" y="30" width="152" height="208" rx="12" fill="${L.body}" stroke="${L.text}" stroke-opacity=".3" stroke-width="1.2"/>
+      <rect x="20" y="236" width="160" height="14" rx="4" fill="${L.band}"/>
+      <rect x="36" y="44" width="128" height="180" rx="8" fill="none" stroke="${L.text}" stroke-opacity=".18"/>
       ${mark(66)}
-      <text x="100" y="150" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="800" font-size="13.5" letter-spacing="2.6" fill="${L.text}">THANH TÂN</text>
+      <text x="100" y="150" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="800" font-size="15" letter-spacing="3" fill="${L.text}">THANH TÂN</text>
       <text x="100" y="168" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="8.5" letter-spacing="2.2" fill="${L.sub}">${p.line}</text>
       <text x="100" y="206" text-anchor="middle" font-family="Be Vietnam Pro,sans-serif" font-weight="600" font-size="7" letter-spacing="1.6" fill="${L.sub}">COLD BREW</text>
     </svg>`;

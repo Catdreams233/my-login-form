@@ -604,3 +604,22 @@ h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: .1em; font-weight: 6
   .card__meter i { gap: 3px; }
   .card__meter b { width: 13px; }
 }
+
+/* ================= Dòng sản phẩm: đồng đều + bo góc lại ================= */
+/* Mọi thẻ dùng chung các hàng (subgrid): ảnh, xuất xứ, tên, mô tả, nốt hương, độ đậm, nút mua luôn thẳng hàng */
+@supports (grid-template-rows: subgrid) {
+  #productGrid { row-gap: 0; }
+  #productGrid .card { display: grid; grid-row: span 7; grid-template-rows: subgrid; row-gap: 0; padding-bottom: 36px; }
+  #productGrid .card__origin, #productGrid .card__notes, #productGrid .card__tags { min-height: 0; }
+  #productGrid .card__buy { margin-top: 0; align-self: end; }
+}
+/* Bao bì: cùng một khung ảnh, cùng cỡ */
+.card__media svg { width: 56%; }
+
+/* Bo góc */
+#productGrid .card__media { border-radius: 22px; }
+#productGrid .card__tags li { border-radius: 999px; padding: 4px 11px; }
+#productGrid .card__meter b { border-radius: 999px; }
+#productGrid .card__add { border-radius: 999px; }
+#productGrid .card__buy select { border-radius: 999px; padding-inline: 16px; }
+#filters .chip { border-radius: 999px; }
