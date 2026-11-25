@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguồn gốc cà phê Thanh Tân: đất bazan Buôn Ma Thuột và Cầu Đất</title>
+  <meta name="description" content="Vùng trồng, thổ nhưỡng, giống cà phê và tra cứu mã lô của Thanh Tân: từ đất đỏ bazan Buôn Ma Thuột, Đắk Lắk đến Cầu Đất, Đà Lạt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="marquee marquee--small">
+      <div class="marquee__track">
+        <span>✦ Đậm đà nguyên bản — thanh tân như thuở ban đầu</span><span>✦ Rang mới mỗi ngày</span><span>✦ Freeship đơn từ 300K</span><span>✦ Từ đất bazan, thanh tân vạn dặm</span>
+        <span>✦ Đậm đà nguyên bản — thanh tân như thuở ban đầu</span><span>✦ Rang mới mỗi ngày</span><span>✦ Freeship đơn từ 300K</span><span>✦ Từ đất bazan, thanh tân vạn dặm</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="THANH TÂN Coffee – Trang chủ">
+        <svg viewBox="0 0 100 100" class="logo__mark" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="var(--brown)" stroke-width="2.2"/>
+          <ellipse cx="50" cy="50" rx="22" ry="26" fill="var(--paper)" stroke="var(--brown)" stroke-width="2.2"/>
+          <path d="M50 24C58 32 58 44 50 54C42 44 42 32 50 24Z" fill="var(--gold)"/>
+          <path d="M50 54C52 63 51 71 49 76" stroke="var(--brown)" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+          <path d="M29 52Q50 42 71 52" stroke="var(--gold)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span>Thanh Tân</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Điều hướng chính">
+        <a href="san-pham.html">Sản phẩm</a>
+        <a href="tim-gu.html">Tìm gu</a>
+        <a href="nguon-goc.html" class="active" aria-current="page">Nguồn gốc</a>
+        <a href="goi-dinh-ky.html">Gói định kỳ</a>
+        <a href="cach-pha.html">Cách pha</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <div class="header__actions">
+        <button class="icon-btn cart-btn" id="cartBtn" aria-label="Giỏ hàng">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Mở menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+<section class="section" id="origins">
+      <div class="container">
+        <div class="section__head">
+          <div><h1>Từ đất bazan Tây Nguyên</h1></div>
+          <p class="section__lead">Thanh — như dòng nước đầu nguồn Đắk Lắk, không lẫn tạp chất. Tân — như hạt cà phê vừa hái, vừa rang lên mỗi sớm mai.</p>
+        </div>
+        <div class="origin-tabs" id="originTabs" role="tablist"></div>
+        <div class="origin" id="originPanel"></div>
+
+        <div class="trace">
+          <div>
+            <h3>Tra cứu mã lô (demo)</h3>
+            <p>Nhập mã in dưới đáy túi để xem vùng trồng và tháng rang.</p>
+          </div>
+          <form class="trace__form" id="traceForm">
+            <input id="traceInput" type="text" placeholder="VD: TT-BMT-2611" aria-label="Mã lô" />
+            <button class="btn btn--dark" type="submit">Tra cứu</button>
+          </form>
+          <div class="trace__result" id="traceResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__news">
+          <h3>Nhận tin từ Thanh Tân</h3>
+          <form class="news" id="newsForm">
+            <input type="email" placeholder="Email của bạn" aria-label="Email" required />
+            <button type="submit">Đăng ký</button>
+          </form>
+        </div>
+        <div class="footer__cols">
+          <div><h4>Sản phẩm</h4><a href="san-pham.html#p1">Nguyên Bản</a><a href="san-pham.html#p2">Thượng Hạng</a><a href="san-pham.html#p3">Cổ Truyền</a><a href="san-pham.html#p4">Tươi Mới</a></div>
+          <div><h4>Thanh Tân</h4><a href="tim-gu.html">Tìm gu</a><a href="nguon-goc.html">Nguồn gốc</a><a href="goi-dinh-ky.html">Gói định kỳ</a><a href="cach-pha.html">Cách pha</a><a href="blog.html">Blog</a></div>
+          <div><h4>Liên hệ</h4><span>Buôn Ma Thuột · Đắk Lắk · Việt Nam</span><span>Hotline, email: đang cập nhật</span></div>
+        </div>
+      </div>
+      <div class="footer__word" aria-hidden="true">THANH TÂN</div>
+      <div class="footer__bottom"><span>© <span id="year"></span> THANH TÂN Coffee</span><span>Đậm đà nguyên bản ✦ Thanh tân như thuở ban đầu</span></div>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart" id="cart" aria-label="Giỏ hàng">
+    <div class="cart__head"><h3>Giỏ hàng</h3><button class="icon-btn" id="cartClose" aria-label="Đóng">✕</button></div>
+    <div class="ship" id="ship"><p id="shipText"></p><div class="ship__bar"><span id="shipBar"></span></div></div>
+    <div class="cart__items" id="cartItems"></div>
+    <div class="cart__foot">
+      <div class="cart__total"><span>Tạm tính</span><b id="cartTotal">0đ</b></div>
+      <button class="btn btn--dark btn--block" id="checkoutBtn">Thanh toán</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="common.js"></script>
+  <script src="app.js"></script>
+  <script src="origins.js"></script>
+</body>
+</html>

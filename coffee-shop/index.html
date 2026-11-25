@@ -12,7 +12,6 @@
 </head>
 <body>
 
-  <!-- ===== THANH THÔNG BÁO (marquee) ===== -->
   <div class="topbar">
     <div class="marquee marquee--small">
       <div class="marquee__track">
@@ -22,10 +21,9 @@
     </div>
   </div>
 
-  <!-- ===== HEADER ===== -->
   <header class="header" id="header">
     <div class="container header__inner">
-      <a href="#top" class="logo" aria-label="THANH TÂN Coffee">
+      <a href="index.html" class="logo" aria-label="THANH TÂN Coffee – Trang chủ">
         <svg viewBox="0 0 100 100" class="logo__mark" aria-hidden="true">
           <circle cx="50" cy="50" r="46" fill="none" stroke="var(--brown)" stroke-width="2.2"/>
           <ellipse cx="50" cy="50" rx="22" ry="26" fill="var(--paper)" stroke="var(--brown)" stroke-width="2.2"/>
@@ -35,13 +33,13 @@
         </svg>
         <span>Thanh Tân</span>
       </a>
-      <nav class="nav" id="nav">
-        <a href="#shop">Sản phẩm</a>
-        <a href="#quiz">Tìm gu</a>
-        <a href="#origins">Nguồn gốc</a>
-        <a href="#subscribe">Gói định kỳ</a>
-        <a href="#brew">Cách pha</a>
-        <a href="#blog">Blog</a>
+      <nav class="nav" id="nav" aria-label="Điều hướng chính">
+        <a href="san-pham.html">Sản phẩm</a>
+        <a href="tim-gu.html">Tìm gu</a>
+        <a href="nguon-goc.html">Nguồn gốc</a>
+        <a href="goi-dinh-ky.html">Gói định kỳ</a>
+        <a href="cach-pha.html">Cách pha</a>
+        <a href="blog.html">Blog</a>
       </nav>
       <div class="header__actions">
         <button class="icon-btn cart-btn" id="cartBtn" aria-label="Giỏ hàng">
@@ -56,16 +54,15 @@
   </header>
 
   <main id="top">
-    <!-- ===== HERO ===== -->
-    <section class="hero">
+<section class="hero">
       <div class="container hero__inner">
         <div class="hero__text">
           <span class="pill">Rang mộc · Buôn Ma Thuột · Đắk Lắk</span>
           <h1>Đậm đà nguyên bản,<br/>thanh tân như<br/><em>thuở ban đầu.</em></h1>
           <p>Cà phê nguyên chất từ vùng đất đỏ bazan Buôn Ma Thuột. Mỗi hạt được tuyển chọn và rang mới mỗi ngày, giữ trọn hương vị nguyên bản của cao nguyên.</p>
           <div class="hero__cta">
-            <a href="#shop" class="btn btn--dark">Mua cà phê</a>
-            <a href="#quiz" class="btn btn--line">Tìm gu của tôi →</a>
+            <a href="san-pham.html" class="btn btn--dark">Mua cà phê</a>
+            <a href="tim-gu.html" class="btn btn--line">Tìm gu của tôi →</a>
             <span class="hero__from" id="heroFrom"></span>
           </div>
           <ul class="hero__proof">
@@ -81,115 +78,52 @@
       </div>
     </section>
 
-    <!-- ===== SẢN PHẨM ===== -->
     <section class="section" id="shop">
       <div class="container">
         <div class="section__head">
-          <div>
-            <h2>Bốn dòng Thanh Tân</h2>
-          </div>
-          <div class="filters" id="filters" role="tablist">
-            <button class="chip active" data-filter="all">Tất cả</button>
-            <button class="chip" data-filter="bean">Hạt rang & rang xay</button>
-            <button class="chip" data-filter="rtd">Pha sẵn</button>
-          </div>
-        </div>
-        <div class="shop-intro">
-          <div class="fmap" id="flavorMap"></div>
-          <div class="sampler" id="sampler"></div>
+          <div><h2>Bốn dòng Thanh Tân</h2></div>
+          <p class="section__lead">Từ hạt rang mộc đến cold brew đóng lon. Chọn một dòng hợp cách pha của bạn.</p>
         </div>
         <div class="grid" id="productGrid"></div>
+        <p class="home-more"><a href="san-pham.html" class="btn btn--line">Xem bản đồ hương vị và bộ thử 4 dòng →</a></p>
       </div>
     </section>
 
-    <!-- ===== QUIZ ===== -->
-    <section class="section quiz" id="quiz">
-      <div class="container quiz__inner">
-        <div class="quiz__intro">
-          <h2>Không biết chọn gì?<br/>3 câu là xong.</h2>
-          <p>Trả lời nhanh, Thanh Tân gợi ý đúng dòng cà phê hợp khẩu vị và cách pha của bạn.</p>
+    <section class="section home-cta">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2>Không biết chọn gì? 3 câu là xong.</h2>
+            <p>Trả lời nhanh, Thanh Tân gợi ý đúng dòng cà phê hợp khẩu vị và cách pha của bạn.</p>
+          </div>
+          <a href="tim-gu.html" class="btn btn--dark">Tìm gu của tôi</a>
         </div>
-        <div class="quiz__card" id="quizCard"></div>
       </div>
     </section>
 
-    <!-- ===== NGUỒN GỐC ===== -->
     <section class="section" id="origins">
       <div class="container">
         <div class="section__head">
-          <div>
-            <h2>Từ đất bazan Tây Nguyên</h2>
-          </div>
+          <div><h2>Từ đất bazan Tây Nguyên</h2></div>
           <p class="section__lead">Thanh — như dòng nước đầu nguồn Đắk Lắk, không lẫn tạp chất. Tân — như hạt cà phê vừa hái, vừa rang lên mỗi sớm mai.</p>
         </div>
-        <div class="origin-tabs" id="originTabs" role="tablist"></div>
-        <div class="origin" id="originPanel"></div>
-
-        <!-- Truy xuất lô -->
-        <div class="trace">
-          <div>
-            <h3>Tra cứu mã lô (demo)</h3>
-            <p>Nhập mã in dưới đáy túi để xem vùng trồng và tháng rang.</p>
-          </div>
-          <form class="trace__form" id="traceForm">
-            <input id="traceInput" type="text" placeholder="VD: TT-BMT-2611" aria-label="Mã lô" />
-            <button class="btn btn--dark" type="submit">Tra cứu</button>
-          </form>
-          <div class="trace__result" id="traceResult" aria-live="polite"></div>
-        </div>
+        <div class="otiles" id="originTiles"></div>
+        <p class="home-more"><a href="nguon-goc.html" class="btn btn--line">Tra cứu mã lô và câu chuyện vùng trồng →</a></p>
       </div>
     </section>
 
-    <!-- ===== GÓI ĐỊNH KỲ ===== -->
-    <section class="section subscribe" id="subscribe">
-      <div class="container subscribe__inner">
-        <div>
-          <h2>Không bao giờ hết cà phê.</h2>
-          <p class="section__lead">Hạt mới rang giao tận nhà theo lịch của bạn. Tiết kiệm 15%, freeship mọi đơn, tạm dừng hoặc huỷ bất cứ lúc nào.</p>
-          <ul class="ticks">
-            <li>Đổi dòng sản phẩm mỗi kỳ – thử cả 4 dòng Thanh Tân</li>
-            <li>Rang mới, giao theo đúng chu kỳ bạn chọn</li>
-            <li>Không ràng buộc, huỷ bất cứ lúc nào</li>
-          </ul>
-        </div>
-        <div class="plan" id="plan">
-          <div class="plan__row">
-            <span>Giao mỗi</span>
-            <div class="seg" id="freqSeg">
-              <button data-v="1">1 tuần</button><button data-v="2" class="active">2 tuần</button><button data-v="4">4 tuần</button>
-            </div>
-          </div>
-          <div class="plan__row">
-            <span>Khối lượng</span>
-            <div class="seg" id="sizeSeg">
-              <button data-v="250" class="active">250g</button><button data-v="500">500g</button><button data-v="1000">1kg</button>
-            </div>
-          </div>
-          <div class="plan__price">
-            <div><small>Mỗi lần giao</small><b id="planPrice">—</b></div>
-            <s id="planOld">—</s>
-          </div>
-          <p class="plan__note" id="planNote"></p>
-          <button class="btn btn--dark btn--block" id="planBtn">Đăng ký gói</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CÁCH PHA ===== -->
-    <section class="section" id="brew">
+    <section class="section home-cta">
       <div class="container">
-        <div class="section__head">
+        <div class="cta-band cta-band--dark">
           <div>
-            <h2>Pha chậm rãi, trọn vị</h2>
+            <h2>Không bao giờ hết cà phê.</h2>
+            <p>Hạt mới rang giao tận nhà theo lịch của bạn. Tiết kiệm 15%, freeship mọi đơn, tạm dừng hoặc huỷ bất cứ lúc nào.</p>
           </div>
-          <p class="section__lead">Công thức chuẩn để một tách cà phê giữ trọn hương vị nguyên bản. Lưu lại và thử ngay sáng mai.</p>
+          <a href="goi-dinh-ky.html" class="btn btn--accent">Xem gói định kỳ</a>
         </div>
-        <div class="brew-grid" id="brewGrid"></div>
-        <p class="brew-more"><a href="cach-pha-ca-phe.html" class="btn btn--line">Xem hướng dẫn pha chi tiết từng bước →</a></p>
       </div>
     </section>
 
-    <!-- ===== BLOG ===== -->
     <section class="section blog-home" id="blog">
       <div class="container">
         <div class="section__head">
@@ -214,7 +148,6 @@
       </div>
     </section>
 
-    <!-- ===== LỜI NÓI THƯƠNG HIỆU ===== -->
     <section class="section reviews">
       <div class="container">
         <div class="review-row">
@@ -226,7 +159,6 @@
     </section>
   </main>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
       <div class="footer__top">
@@ -238,8 +170,8 @@
           </form>
         </div>
         <div class="footer__cols">
-          <div><h4>Sản phẩm</h4><a href="#shop">Nguyên Bản</a><a href="#shop">Thượng Hạng</a><a href="#shop">Cổ Truyền</a><a href="#shop">Tươi Mới</a></div>
-          <div><h4>Thanh Tân</h4><a href="#origins">Nguồn gốc</a><a href="#brew">Cách pha</a><a href="cach-pha-ca-phe.html">Blog: Cách pha cà phê</a><a href="#subscribe">Gói định kỳ</a></div>
+          <div><h4>Sản phẩm</h4><a href="san-pham.html#p1">Nguyên Bản</a><a href="san-pham.html#p2">Thượng Hạng</a><a href="san-pham.html#p3">Cổ Truyền</a><a href="san-pham.html#p4">Tươi Mới</a></div>
+          <div><h4>Thanh Tân</h4><a href="tim-gu.html">Tìm gu</a><a href="nguon-goc.html">Nguồn gốc</a><a href="goi-dinh-ky.html">Gói định kỳ</a><a href="cach-pha.html">Cách pha</a><a href="blog.html">Blog</a></div>
           <div><h4>Liên hệ</h4><span>Buôn Ma Thuột · Đắk Lắk · Việt Nam</span><span>Hotline, email: đang cập nhật</span></div>
         </div>
       </div>
@@ -248,7 +180,6 @@
     </div>
   </footer>
 
-  <!-- ===== CART ===== -->
   <div class="overlay" id="overlay"></div>
   <aside class="cart" id="cart" aria-label="Giỏ hàng">
     <div class="cart__head"><h3>Giỏ hàng</h3><button class="icon-btn" id="cartClose" aria-label="Đóng">✕</button></div>
@@ -261,7 +192,10 @@
   </aside>
 
   <div class="toast" id="toast" role="status"></div>
+
   <script src="common.js"></script>
-  <script src="script.js"></script>
+  <script src="app.js"></script>
+  <script src="shop.js"></script>
+  <script src="home.js"></script>
 </body>
 </html>
