@@ -680,3 +680,5 @@ h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: .1em; font-weight: 6
 @media (max-width: 900px) { .sampler__bags { height: 130px; } }
 .citem__img--set svg { width: 40%; margin: 0 -8px; }
 #productGrid .card { scroll-margin-top: 130px; }
+.shop-intro > * { min-width: 0; }
+@media (max-width: 900px) { .shop-intro { grid-template-columns: minmax(0, 1fr); } }
