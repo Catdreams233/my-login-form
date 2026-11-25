@@ -623,3 +623,60 @@ h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: .1em; font-weight: 6
 #productGrid .card__add { border-radius: 999px; }
 #productGrid .card__buy select { border-radius: 999px; padding-inline: 16px; }
 #filters .chip { border-radius: 999px; }
+
+/* ================= Bản đồ hương vị + Bộ thử 4 dòng ================= */
+.shop-intro { display: grid; grid-template-columns: 1.2fr .8fr; gap: 22px; margin-bottom: 48px; }
+.fmap, .sampler { background: var(--cream); border-radius: 22px; padding: 28px; }
+.fmap__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 18px; }
+.fmap__head h3, .sampler h3 { font-size: 1.05rem; letter-spacing: .1em; text-transform: uppercase; }
+.fmap__head p { font-size: .85rem; color: var(--ink-2); }
+.fmap__plot { position: relative; aspect-ratio: 16 / 8.5; margin: 0 6px; }
+.fmap__plot::before, .fmap__plot::after { content: ""; position: absolute; background: var(--line); }
+.fmap__plot::before { left: 0; right: 0; top: 50%; height: 1px; }
+.fmap__plot::after { top: 0; bottom: 0; left: 50%; width: 1px; }
+.fmap__ax { position: absolute; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); background: var(--cream); padding: 0 6px; z-index: 1; }
+.fmap__ax--t { top: -9px; left: 50%; transform: translateX(-50%); }
+.fmap__ax--b { bottom: -9px; left: 50%; transform: translateX(-50%); }
+.fmap__ax--l { left: -6px; top: 50%; transform: translateY(-50%); }
+.fmap__ax--r { right: -6px; top: 50%; transform: translateY(-50%); }
+.fmap__dot { position: absolute; z-index: 2; transform: translate(-7px, -50%); display: flex; align-items: center; gap: 8px; background: none; border: 0; cursor: pointer; font: inherit; color: var(--ink); font-weight: 700; font-size: .85rem; white-space: nowrap; padding: 4px; border-radius: 999px; }
+.fmap__dot i { width: 14px; height: 14px; border-radius: 50%; background: var(--dot); box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px var(--dot); transition: transform .2s; flex: none; }
+.fmap__dot.left { flex-direction: row-reverse; transform: translate(calc(-100% + 7px), -50%); }
+.fmap__dot:hover i, .fmap__dot:focus-visible i { transform: scale(1.35); }
+.fmap__dot:focus-visible { outline: 2px solid var(--brown); outline-offset: 2px; }
+
+.sampler { display: flex; flex-direction: column; gap: 20px; background: var(--brown); color: var(--paper); }
+.sampler__bags { display: flex; justify-content: center; align-items: flex-end; gap: 0; height: 120px; }
+.sampler__bags svg { height: 100%; width: auto; margin: 0 -6px; }
+.sampler__bags svg:nth-child(1) { transform: rotate(-6deg); }
+.sampler__bags svg:nth-child(4) { transform: rotate(6deg); }
+.sampler h3 { color: var(--paper); margin-bottom: 8px; }
+.sampler p { font-size: .92rem; line-height: 1.6; color: rgba(245, 239, 224, .85); margin-bottom: 18px; }
+.sampler__add { width: 100%; display: flex; justify-content: space-between; align-items: center; background: var(--gold); color: var(--ink); border: 0; border-radius: 999px; padding: 14px 22px; font: inherit; font-weight: 700; cursor: pointer; transition: filter .2s; }
+.sampler__add:hover { filter: brightness(1.06); }
+.sampler__add:focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
+
+/* Thẻ vừa được chọn từ bản đồ: nháy viền nhẹ */
+.card.hit .card__media { animation: hit 1.6s ease; }
+@keyframes hit { 0%, 60% { box-shadow: 0 0 0 3px var(--gold); } 100% { box-shadow: 0 0 0 3px transparent; } }
+
+/* Giỏ: ảnh bộ thử xếp 4 túi nhỏ */
+.citem__img--set { display: flex; align-items: center; justify-content: center; background: var(--cream); overflow: hidden; }
+.citem__img--set svg { width: 30%; margin: 0 -3px; }
+
+@media (max-width: 900px) { .shop-intro { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .fmap, .sampler { padding: 20px; }
+  .fmap__head { flex-direction: column; gap: 2px; }
+  .fmap__plot { aspect-ratio: 1 / 1; margin: 0 4px; }
+  .fmap__ax { font-size: .66rem; }
+  .fmap__dot { font-size: .8rem; }
+}
+@media (prefers-reduced-motion: reduce) { .card.hit .card__media { animation: none; } }
+.sampler { background: var(--ink); }
+.sampler__bags { height: 150px; margin-bottom: 4px; }
+.sampler__body { display: flex; flex-direction: column; flex: 1; }
+.sampler__add { margin-top: auto; }
+@media (max-width: 900px) { .sampler__bags { height: 130px; } }
+.citem__img--set svg { width: 40%; margin: 0 -8px; }
+#productGrid .card { scroll-margin-top: 130px; }

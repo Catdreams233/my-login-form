@@ -39,16 +39,16 @@ const SIZES = {
 // look: màu bao bì. Nền bao bì luôn là nâu đất hoặc trắng ngà, mỗi dòng có một màu điểm nhấn riêng.
 const products = [
   { id: 1, line: "NGUYÊN BẢN", cat: "bean", name: "Thanh Tân Nguyên Bản", origin: "Robusta Buôn Ma Thuột · Rang mộc",
-    flavor: ["Đậm đà", "Rang mộc", "Vị truyền thống"], body: 5, notes: "Đậm vị truyền thống, dành cho người yêu cà phê phin đậm đà.", price: 165000, sizes: "bean", bg: C.cream,
+    flavor: ["Đậm đà", "Rang mộc", "Vị truyền thống"], body: 5, trad: 4, notes: "Đậm vị truyền thống, dành cho người yêu cà phê phin đậm đà.", price: 165000, sizes: "bean", bg: C.cream,
     look: { body: C.brown, band: C.ink, text: C.paper, sub: "#D9C7A5", mark: MARK_DARK, shape: "pouch" } },
   { id: 2, line: "THƯỢNG HẠNG", cat: "bean", name: "Thanh Tân Thượng Hạng", origin: "Arabica Cầu Đất pha Robusta Buôn Ma Thuột",
-    flavor: ["Thơm tinh tế", "Hậu ngọt dịu", "Arabica Cầu Đất"], body: 3, notes: "Hương thơm tinh tế, hậu vị ngọt dịu.", price: 195000, sizes: "bean", bg: C.brown,
+    flavor: ["Thơm tinh tế", "Hậu ngọt dịu", "Arabica Cầu Đất"], body: 3, trad: 2.5, notes: "Hương thơm tinh tế, hậu vị ngọt dịu.", price: 195000, sizes: "bean", bg: C.brown,
     look: { body: C.paper, band: C.gold, text: C.brown, sub: "#8A6A4D", mark: MARK_LIGHT, shape: "pouch" } },
   { id: 3, line: "CỔ TRUYỀN", cat: "bean", name: "Thanh Tân Cổ Truyền", origin: "Rang xay kiểu phin truyền thống",
-    flavor: ["Phin truyền thống", "Hoài cổ", "Rang xay"], body: 4, notes: "Đóng gói hoài cổ, gợi nhớ hương vị cà phê xưa.", price: 135000, sizes: "bean", bg: C.gold,
+    flavor: ["Phin truyền thống", "Hoài cổ", "Rang xay"], body: 4, trad: 5, notes: "Đóng gói hoài cổ, gợi nhớ hương vị cà phê xưa.", price: 135000, sizes: "bean", bg: C.gold,
     look: { body: C.paper, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "pouch" } },
   { id: 4, line: "TƯƠI MỚI", cat: "rtd", name: "Thanh Tân Tươi Mới", origin: "Cold Brew đóng lon",
-    flavor: ["Cold brew", "Thanh mát", "Mở lon là uống"], body: 2, notes: "Trẻ trung, tiện lợi, dành cho người trẻ đô thị năng động.", price: 45000, sizes: "rtd", bg: C.forest,
+    flavor: ["Cold brew", "Thanh mát", "Mở lon là uống"], body: 2, trad: 1, notes: "Trẻ trung, tiện lợi, dành cho người trẻ đô thị năng động.", price: 45000, sizes: "rtd", bg: C.forest,
     look: { body: C.paper, band: C.forest, text: C.brown, sub: "#7A5A43", mark: MARK_LIGHT, shape: "can" } },
 ];
 
@@ -200,6 +200,40 @@ grid.addEventListener("click", (e) => {
   addProduct(+card.dataset.id, sel ? +sel.value : 0);
 });
 
+
+/* ==========================================================
+   BẢN ĐỒ HƯƠNG VỊ + BỘ THỬ 4 DÒNG (đầu mục sản phẩm)
+   ========================================================== */
+const DOT = { 1: C.brown, 2: C.gold, 3: C.forest, 4: C.ink };
+const SAMPLER = { key: "set-1", pid: "set", name: "Bộ thử 4 dòng", sub: "3 gói 50g + 1 lon", price: 129000 }; // giá mẫu
+
+$("#flavorMap").innerHTML = `
+  <div class="fmap__head"><h3>Bản đồ hương vị</h3><p>Bấm vào một dòng để xem chi tiết.</p></div>
+  <div class="fmap__plot">
+    <span class="fmap__ax fmap__ax--t">Truyền thống</span><span class="fmap__ax fmap__ax--b">Hiện đại</span>
+    <span class="fmap__ax fmap__ax--l">Nhẹ nhàng</span><span class="fmap__ax fmap__ax--r">Đậm đà</span>
+    ${products.map((p) => `<button class="fmap__dot ${p.body >= 4 ? "left" : ""}" data-id="${p.id}" style="left:${10 + ((p.body - 1) / 4) * 80}%;top:${100 - (12 + ((p.trad - 1) / 4) * 76)}%;--dot:${DOT[p.id]}"><i></i><span>${p.line}</span></button>`).join("")}
+  </div>`;
+
+$("#sampler").innerHTML = `
+  <div class="sampler__bags">${[products[0], products[1], products[2], products[3]].map(bagSVG).join("")}</div>
+  <div class="sampler__body">
+    <h3>Bộ thử 4 dòng</h3>
+    <p>Chưa biết hợp dòng nào? Thử cả bốn: 3 gói 50g (Nguyên Bản, Thượng Hạng, Cổ Truyền) và 1 lon Tươi Mới.</p>
+    <button class="sampler__add"><span>Thêm bộ thử</span><b>${fmt(SAMPLER.price)}</b></button>
+  </div>`;
+
+$("#sampler").addEventListener("click", (e) => { if (e.target.closest(".sampler__add")) addItem(SAMPLER); });
+
+$("#flavorMap").addEventListener("click", (e) => {
+  const d = e.target.closest(".fmap__dot");
+  if (!d) return;
+  if (!$(`.card[data-id="${d.dataset.id}"]`)) { $$(".chip", $("#filters"))[0].click(); }
+  const card = $(`.card[data-id="${d.dataset.id}"]`);
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+  card.classList.remove("hit"); void card.offsetWidth; card.classList.add("hit");
+});
+
 /* ==========================================================
    CART (lưu localStorage, thanh tiến độ freeship)
    ========================================================== */
@@ -233,8 +267,9 @@ function renderCart() {
   $("#cartItems").innerHTML = cart.length
     ? cart.map((i) => {
         const p = products.find((x) => x.id === i.pid) || products[0];
+        const img = i.pid === "set" ? `<div class="citem__img citem__img--set">${products.map(bagSVG).join("")}</div>` : `<div class="citem__img" style="background:${p.bg}">${bagSVG(p)}</div>`;
         return `<div class="citem">
-          <div class="citem__img" style="background:${p.bg}">${bagSVG(p)}</div>
+          ${img}
           <div><h4>${i.name}</h4><small>${i.sub}</small>
             <div class="qty"><button data-act="dec" data-key="${i.key}" aria-label="Giảm">−</button><span>${i.qty}</span><button data-act="inc" data-key="${i.key}" aria-label="Tăng">+</button></div>
           </div>
