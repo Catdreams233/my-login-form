@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phòng thử nghiệm | THANH TÂN Coffee</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="lab.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="THANH TÂN Coffee – Trang chủ">
+        <svg viewBox="0 0 100 100" class="logo__mark" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="var(--brown)" stroke-width="2.2"/>
+          <ellipse cx="50" cy="50" rx="22" ry="26" fill="var(--paper)" stroke="var(--brown)" stroke-width="2.2"/>
+          <path d="M50 24C58 32 58 44 50 54C42 44 42 32 50 24Z" fill="var(--gold)"/>
+          <path d="M50 54C52 63 51 71 49 76" stroke="var(--brown)" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+          <path d="M29 52Q50 42 71 52" stroke="var(--gold)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span>Thanh Tân</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Điều hướng chính">
+        <a href="index.html#shop">Sản phẩm</a>
+        <a href="index.html#quiz">Tìm gu</a>
+        <a href="index.html#origins">Nguồn gốc</a>
+        <a href="index.html#subscribe">Gói định kỳ</a>
+        <a href="cach-pha-ca-phe.html">Cách pha</a>
+      </nav>
+      <div class="header__actions">
+        <a href="index.html#shop" class="btn btn--dark btn--sm">Mua cà phê</a>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Mở menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="lab">
+    <section class="lab-hero">
+      <div class="container">
+        <p class="lab-note"><b>Trang thử nghiệm</b> – chưa gắn vào trang chính, không có liên kết từ trang chủ và không được lập chỉ mục. Số liệu và nội dung là mẫu.</p>
+        <h1>Phòng thử nghiệm</h1>
+        <p class="lab-lead">Ba tính năng đang thử: chọn cà phê theo cách pha, đồng hồ bấm giờ và hành trình hạt cà phê.</p>
+        <a class="lab-back" href="index.html">← Về trang chủ</a>
+      </div>
+    </section>
+
+    <!-- 1 + 2: CHỌN THEO CÁCH PHA + ĐỒNG HỒ -->
+    <section class="section lab-sec" id="cach-pha">
+      <div class="container">
+        <div class="section__head"><h2>Chọn theo cách pha</h2></div>
+        <div class="lab-tabs" id="methodTabs" role="tablist" aria-label="Cách pha"></div>
+        <div class="method" id="methodPanel" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- 3: HÀNH TRÌNH -->
+    <section class="section lab-sec lab-sec--cream" id="hanh-trinh">
+      <div class="container">
+        <div class="section__head"><h2>Hành trình hạt cà phê</h2></div>
+        <p class="lab-sample">Nội dung mẫu – thay bằng câu chuyện thật của vùng nguyên liệu khi có.</p>
+        <ol class="journey" id="journey"></ol>
+        <a class="btn btn--dark" href="index.html#origins">Tra cứu mã lô →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__news">
+          <h3>Pha chậm rãi, trọn vị.</h3>
+          <a href="index.html#shop" class="btn btn--accent">Chọn cà phê ngay</a>
+        </div>
+        <div class="footer__cols">
+          <div><h4>Sản phẩm</h4><a href="index.html#shop">Nguyên Bản</a><a href="index.html#shop">Thượng Hạng</a><a href="index.html#shop">Cổ Truyền</a><a href="index.html#shop">Tươi Mới</a></div>
+          <div><h4>Thanh Tân</h4><a href="index.html#origins">Nguồn gốc</a><a href="cach-pha-ca-phe.html">Cách pha cà phê</a><a href="index.html#subscribe">Gói định kỳ</a></div>
+          <div><h4>Liên hệ</h4><span>Buôn Ma Thuột · Đắk Lắk · Việt Nam</span><span>Hotline, email: đang cập nhật</span></div>
+        </div>
+      </div>
+      <div class="footer__word" aria-hidden="true">THANH TÂN</div>
+      <div class="footer__bottom"><span>© <span id="year"></span> THANH TÂN Coffee</span><span>Đậm đà nguyên bản ✦ Thanh tân như thuở ban đầu</span></div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="common.js"></script>
+  <script src="blog.js"></script>
+  <script src="lab.js"></script>
+</body>
+</html>
