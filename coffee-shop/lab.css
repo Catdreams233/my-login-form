@@ -76,3 +76,19 @@
 @media (prefers-reduced-motion: reduce) { .timer__ring .fg, .step { transition: none; } }
 .lab-sec .section__head { margin-bottom: 28px; }
 .lab-sample { margin: 0 0 36px; }
+
+/* Bản blog thử nghiệm */
+.read-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 80; pointer-events: none; }
+.read-progress i { display: block; height: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; }
+.timer--inline { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 12px 28px; background: var(--cream); border-radius: 22px; padding: 22px 28px; margin: 6px 0 28px; text-align: left; }
+.timer--inline .timer__ring { width: 130px; height: 130px; margin: 0; grid-row: span 2; }
+.timer--inline .timer__time { font-size: 1.6rem; }
+.timer--inline .timer__time small { font-size: .62rem; }
+.timer--inline .timer__btns { justify-content: flex-start; }
+.timer--inline .timer__side h3 { font-size: .95rem; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 4px; }
+.timer--inline .timer__side p { margin: 0; font-size: .95rem; line-height: 1.6; color: var(--ink-2); }
+@media (max-width: 560px) {
+  .timer--inline { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 22px 18px; }
+  .timer--inline .timer__ring { grid-row: auto; }
+  .timer--inline .timer__btns { justify-content: center; }
+}
