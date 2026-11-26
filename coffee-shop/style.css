@@ -799,3 +799,23 @@ html.lock { overflow: hidden; }
   .pd__media::before { width: auto; height: 82%; }
   .pd__media svg { width: 26%; }
 }
+
+/* ===== Nút và ô nhập mềm hơn: bo tròn, chữ nhẹ hơn, hover êm ===== */
+.btn, .btn--sm, .btn--block { border-radius: 999px; font-weight: 700; letter-spacing: .02em; transition: background .25s, color .25s, border-color .25s, transform .25s; }
+.btn--line { border-width: 1.5px; }
+.btn:active, .card__add:active, .timer__btn:active { transform: translateY(0) scale(.98); }
+.btn:focus-visible, .chip:focus-visible, .seg button:focus-visible, .origin-tabs button:focus-visible, .quiz__opt:focus-visible, .card__add:focus-visible, .news button:focus-visible { outline: 2px solid var(--brown); outline-offset: 3px; }
+.chip, .filter, .origin-tab, .tab, [role="tab"], .pill-btn, .origin-tabs button { border-radius: 999px; }
+.origin-tabs button { padding: 12px 24px; font-weight: 700; transition: background .25s, color .25s, border-color .25s; }
+.card__add, .card select, .size-select, select { border-radius: 999px; }
+.seg, .seg button, .news, .news button, .qty, .qty button, .cart-count { border-radius: 999px; }
+.news { border: 1px solid var(--ink-2); }
+.lot input, input[type="text"], input[type="search"], input[type="email"], .trace__form input { border-radius: 999px; padding-inline: 22px; }
+.quiz__opt { border-radius: 16px; }
+.card__tags li { border-radius: 999px; padding: 4px 11px; }
+.card__meter b, .roast__dots i { border-radius: 3px; }
+.origin__alt { border-radius: 12px; }
+.cart__foot .btn, .plan .btn { border-radius: 999px; }
+.pd__close, .icon-btn { border-radius: 50%; }
+.toast { border-radius: 999px; }
+.citem__price button { border-radius: 999px; }
