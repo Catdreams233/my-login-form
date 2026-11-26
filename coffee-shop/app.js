@@ -31,6 +31,8 @@ function renderCart() {
   const count = cart.reduce((s, i) => s + i.qty, 0);
   const total = cart.reduce((s, i) => s + i.qty * i.price, 0);
   $("#cartCount").textContent = count;
+  const tc = $("#tabCount");
+  if (tc) { tc.textContent = count; tc.hidden = !count; }
   $("#cartTotal").textContent = fmt(total);
   const left = FREESHIP - total;
   $("#shipText").textContent = left > 0 ? `Mua thêm ${fmt(left)} để được freeship` : "Bạn đã được freeship";
@@ -100,3 +102,25 @@ $("#newsForm").addEventListener("submit", (e) => {
 });
 
 $("#year").textContent = new Date().getFullYear();
+
+/* ==========================================================
+   THANH TAB DƯỚI (chỉ hiện trên điện thoại): đi nhanh giữa các trang chính + giỏ hàng
+   ========================================================== */
+{
+  const cur = document.body.dataset.page;
+  const I = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  const tabs = [
+    ["index", "Trang chủ", I('<path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/>')],
+    ["san-pham", "Sản phẩm", I('<path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>')],
+    ["tim-gu", "Tìm gu", I('<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>')],
+    ["cach-pha", "Cách pha", I('<path d="M5 9h14l-1.5 4h-11z"/><path d="M7 13v3h10v-3"/><path d="M12 16v4"/>')],
+  ];
+  const bar = document.createElement("nav");
+  bar.className = "tabbar";
+  bar.setAttribute("aria-label", "Điều hướng nhanh");
+  bar.innerHTML = tabs.map(([k, t, svg]) => `<a href="${k}.html"${k === cur ? ' class="active" aria-current="page"' : ""}>${svg}<span>${t}</span></a>`).join("") +
+    `<button type="button" id="tabCart">${I('<path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/>')}<span>Giỏ hàng</span><em class="tabbar__count" id="tabCount" hidden></em></button>`;
+  document.body.appendChild(bar);
+  $("#tabCart").addEventListener("click", openCart);
+  renderCart();
+}

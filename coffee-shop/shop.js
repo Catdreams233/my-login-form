@@ -12,9 +12,9 @@ const grid = $("#productGrid");
 function cardHTML(p, i = 0) {
   const sizes = SIZES[p.sizes];
   return `<article class="card" id="p${p.id}" style="animation-delay:${i * 50}ms" data-id="${p.id}">
-    <div class="card__media" style="--disc:${p.bg}">${bagSVG(p)}</div>
+    <div class="card__media" style="--disc:${p.bg}" data-open>${bagSVG(p)}<span class="card__peek">Xem chi tiết</span></div>
     <span class="card__origin">${p.origin}</span>
-    <h3>${p.name}</h3>
+    <h3><button class="card__open" type="button" data-open>${p.name}</button></h3>
     <p class="card__notes">${p.notes}</p>
     <ul class="card__tags">${p.flavor.map((t) => `<li>${t}</li>`).join("")}</ul>
     <div class="card__meter" role="img" aria-label="Độ đậm ${p.body} trên 5"><span>Độ đậm</span><i>${[1, 2, 3, 4, 5].map((n) => `<b class="${n <= p.body ? "on" : ""}"></b>`).join("")}</i></div>
@@ -46,11 +46,95 @@ grid.addEventListener("change", (e) => {
 });
 
 grid.addEventListener("click", (e) => {
+  const open = e.target.closest("[data-open]");
+  if (open) return openDetail(+open.closest(".card").dataset.id, open.closest(".card"));
   const btn = e.target.closest(".card__add");
   if (!btn) return;
   const card = btn.closest(".card");
   const sel = $("select", card);
   addProduct(+card.dataset.id, sel ? +sel.value : 0);
+});
+
+/* ==========================================================
+   KHUNG CHI TIẾT SẢN PHẨM (bấm vào ảnh hoặc tên sản phẩm)
+   Chỉ dùng dữ liệu đã có: mô tả, hương vị, độ đậm, cách pha hợp.
+   ========================================================== */
+const PAIR = {   // cách pha hợp với từng dòng; id = mục trong bài hướng dẫn chi tiết
+  1: [["Phin", "pha-phin"]],
+  2: [["Pour-over", "pour-over"], ["Espresso", "espresso"]],
+  3: [["Phin", "pha-phin"]],
+  4: [["Uống liền, mở lon là có", ""], ["Hoặc tự ủ cold brew", "cold-brew"]],
+};
+const meter = (label, n) => `<div class="card__meter" role="img" aria-label="${label} ${n} trên 5"><span>${label}</span><i>${[1, 2, 3, 4, 5].map((k) => `<b class="${k <= n ? "on" : ""}"></b>`).join("")}</i></div>`;
+
+const pd = document.createElement("div");
+pd.className = "pd";
+pd.id = "pd";
+pd.setAttribute("role", "dialog");
+pd.setAttribute("aria-modal", "true");
+pd.setAttribute("aria-labelledby", "pdTitle");
+document.body.appendChild(pd);
+let pdFrom = null;
+
+function openDetail(id, from) {
+  const p = products.find((x) => x.id === id);
+  if (!p) return;
+  const sizes = SIZES[p.sizes];
+  pdFrom = from || null;
+  pd.innerHTML = `
+    <div class="pd__backdrop" data-close></div>
+    <div class="pd__panel">
+      <button class="pd__close" data-close aria-label="Đóng">✕</button>
+      <div class="pd__media" style="--disc:${p.bg}">${bagSVG(p)}</div>
+      <div class="pd__body">
+        <span class="card__origin">${p.origin}</span>
+        <h2 id="pdTitle">${p.name}</h2>
+        <p class="pd__notes">${p.notes}</p>
+        <ul class="card__tags">${p.flavor.map((t) => `<li>${t}</li>`).join("")}</ul>
+        <div class="pd__meters">${meter("Độ đậm", p.body)}${meter("Truyền thống", Math.round(p.trad))}</div>
+        <div class="pd__pair">
+          <h3>Hợp cách pha</h3>
+          <ul>${PAIR[p.id].map(([t, a]) => `<li>${a ? `<a href="cach-pha-ca-phe.html#${a}">${t} →</a>` : t}</li>`).join("")}</ul>
+        </div>
+        <div class="card__buy">
+          ${sizes.length > 1 ? `<select aria-label="Chọn khối lượng">${sizes.map((s, k) => `<option value="${k}">${s.label}</option>`).join("")}</select>` : ""}
+          <button class="card__add"><span>Thêm</span><b>${fmt(p.price)}</b></button>
+        </div>
+        <p class="pd__ship">Freeship cho đơn từ ${fmt(FREESHIP)}.</p>
+      </div>
+    </div>`;
+  pd.dataset.id = p.id;
+  pd.classList.add("open");
+  document.documentElement.classList.add("lock");
+  $(".pd__close", pd).focus();
+}
+function closeDetail() {
+  if (!pd.classList.contains("open")) return;
+  pd.classList.remove("open");
+  document.documentElement.classList.remove("lock");
+  if (pdFrom) pdFrom.querySelector(".card__open")?.focus();
+}
+pd.addEventListener("click", (e) => {
+  if (e.target.closest("[data-close]")) return closeDetail();
+  const btn = e.target.closest(".card__add");
+  if (!btn) return;
+  const sel = $("select", pd);
+  addProduct(+pd.dataset.id, sel ? +sel.value : 0);
+  closeDetail();
+});
+pd.addEventListener("change", (e) => {
+  if (!e.target.matches("select")) return;
+  const p = products.find((x) => x.id === +pd.dataset.id);
+  $(".card__add b", pd).textContent = fmt(priceOf(p, +e.target.value));
+});
+document.addEventListener("keydown", (e) => {
+  if (!pd.classList.contains("open")) return;
+  if (e.key === "Escape") return closeDetail();
+  if (e.key !== "Tab") return;
+  const f = $$("button, a[href], select", pd).filter((x) => x.offsetParent !== null);
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 });
 
 /* ==========================================================

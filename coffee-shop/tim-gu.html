@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body data-page="tim-gu">
 
   <div class="topbar">
     <div class="marquee marquee--small">
@@ -54,12 +54,22 @@
   </header>
 
   <main id="top">
+
+    <section class="page-banner">
+      <div class="container">
+        <nav class="crumbs" aria-label="Điều hướng phụ"><a href="index.html">Trang chủ</a> / <span>Tìm gu</span></nav>
+        <h1>Tìm gu cà phê của bạn</h1>
+        <p>Trả lời 3 câu, Thanh Tân gợi ý đúng dòng hợp khẩu vị và cách pha của bạn.</p>
+      </div>
+      <svg class="page-banner__art" viewBox="0 0 520 220" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+      <circle cx="400" cy="66" r="32" fill="#C9A227"/>
+      <path d="M0 220V150Q90 95 190 130T380 110Q450 100 520 130V220Z" fill="#E0D2B3"/>
+      <path d="M80 220V175Q180 130 280 160T520 150V220Z" fill="#D2BF98"/>
+      <path d="M200 220V195Q320 165 420 185T520 180V220Z" fill="#6B3410"/>
+    </svg>
+    </section>
 <section class="section quiz" id="quiz">
-      <div class="container quiz__inner">
-        <div class="quiz__intro">
-          <h1>Không biết chọn gì?<br/>3 câu là xong.</h1>
-          <p>Trả lời nhanh, Thanh Tân gợi ý đúng dòng cà phê hợp khẩu vị và cách pha của bạn.</p>
-        </div>
+      <div class="container quiz__inner quiz__inner--solo">
         <div class="quiz__card" id="quizCard"></div>
       </div>
     </section>
