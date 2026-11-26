@@ -1,0 +1,94 @@
+/* THANH TÂN – trang thử nghiệm (nạp sau style.css) */
+.lab-hero { padding: 56px 0 24px; }
+.lab-note { display: inline-block; background: var(--cream); border-radius: 999px; padding: 8px 18px; font-size: .85rem; color: var(--ink-2); margin-bottom: 28px; }
+.lab-note b { color: var(--brown); }
+.lab-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 14px; }
+.lab-lead { max-width: 56ch; color: var(--ink-2); margin-bottom: 18px; }
+.lab-back { font-weight: 600; color: var(--brown); text-decoration: underline; text-underline-offset: 4px; }
+.lab-sec { padding: 72px 0 96px; }
+.lab-sec--cream { background: var(--cream); }
+.lab-sample { color: var(--ink-2); font-size: .9rem; margin: -24px 0 36px; }
+
+/* Tabs cách pha */
+.lab-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.lab-tab { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 999px; padding: 10px 20px 10px 14px; font: inherit; font-weight: 600; cursor: pointer; }
+.lab-tab .ico { width: 22px; height: 22px; color: var(--brown); }
+.lab-tab[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.lab-tab[aria-selected="true"] .ico { color: var(--gold); }
+.lab-tab:focus-visible { outline: 2px solid var(--brown); outline-offset: 2px; }
+
+/* Panel */
+.method { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; align-items: stretch; }
+.method > * { min-width: 0; background: var(--cream); border-radius: 22px; padding: 28px; }
+.method h3 { font-size: 1rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+.recipe { list-style: none; }
+.recipe li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.recipe li:last-child { border-bottom: 0; }
+.recipe span { color: var(--ink-2); }
+.recipe b { font-weight: 700; text-align: right; }
+.method__tip { margin-top: 16px; font-size: .9rem; color: var(--ink-2); line-height: 1.6; }
+
+/* Sản phẩm gợi ý */
+.rec__bag { display: flex; justify-content: center; margin-bottom: 14px; }
+.rec__bag svg { height: 150px; width: auto; }
+.rec__name { font-weight: 700; font-size: 1.1rem; }
+.rec__why { font-size: .9rem; color: var(--ink-2); margin: 4px 0 16px; }
+.rec__buy { display: flex; gap: 10px; }
+.rec__buy select { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 0 14px; height: 46px; font: inherit; font-weight: 600; color: var(--ink); }
+.rec__add { flex: 1; display: flex; justify-content: space-between; align-items: center; background: var(--ink); color: var(--paper); border: 0; border-radius: 999px; padding: 0 20px; height: 46px; font: inherit; font-weight: 700; cursor: pointer; }
+.rec__add:focus-visible, .timer__btn:focus-visible, .rec__alt button:focus-visible { outline: 2px solid var(--brown); outline-offset: 3px; }
+.rec__alt { margin-top: 14px; font-size: .88rem; color: var(--ink-2); }
+.rec__alt button { background: none; border: 0; padding: 0; font: inherit; font-weight: 700; color: var(--brown); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.rec__go { display: block; margin-top: 12px; font-size: .85rem; font-weight: 600; color: var(--brown); }
+
+/* Đồng hồ */
+.timer { text-align: center; }
+.timer__ring { position: relative; width: 190px; height: 190px; margin: 0 auto 18px; }
+.timer__ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.timer__ring circle { fill: none; stroke-width: 8; }
+.timer__ring .bg { stroke: var(--line); }
+.timer__ring .fg { stroke: var(--brown); stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+.timer__time { position: absolute; inset: 0; display: grid; place-content: center; font-size: 2.3rem; font-weight: 800; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+.timer__time small { display: block; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); text-align: center; margin-top: 2px; }
+.timer__btns { display: flex; justify-content: center; gap: 10px; }
+.timer__btn { border-radius: 999px; padding: 12px 26px; font: inherit; font-weight: 700; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); }
+.timer__btn--ghost { background: transparent; color: var(--ink); }
+.timer.done .timer__ring .fg { stroke: var(--forest); }
+.timer__none { color: var(--ink-2); line-height: 1.7; text-align: left; }
+
+/* Hành trình */
+.journey { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin-bottom: 40px; position: relative; counter-reset: step; }
+.journey::before { content: ""; position: absolute; left: 10%; right: 10%; top: 38px; height: 1px; background: var(--ink-2); opacity: .35; }
+.step { position: relative; text-align: center; padding: 0 6px; opacity: .45; transition: opacity .5s; }
+.step.in { opacity: 1; }
+.step__ico { width: 76px; height: 76px; border-radius: 50%; background: var(--paper); border: 1px solid var(--ink-2); display: grid; place-content: center; margin: 0 auto 18px; color: var(--brown); position: relative; z-index: 1; }
+.step__ico .ico { width: 34px; height: 34px; }
+.step h3 { font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+.step p { font-size: .9rem; line-height: 1.6; color: var(--ink-2); }
+
+@media (max-width: 960px) {
+  .method { grid-template-columns: 1fr; }
+  .journey { grid-template-columns: 1fr; gap: 0; }
+  .journey::before { left: 37px; right: auto; top: 20px; bottom: 20px; width: 1px; height: auto; }
+  .step { display: grid; grid-template-columns: 76px 1fr; gap: 18px; text-align: left; padding: 0 0 28px; opacity: 1; }
+  .step__ico { margin: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .timer__ring .fg, .step { transition: none; } }
+.lab-sec .section__head { margin-bottom: 28px; }
+.lab-sample { margin: 0 0 36px; }
+
+/* Bản blog thử nghiệm */
+.read-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 80; pointer-events: none; }
+.read-progress i { display: block; height: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; }
+.timer--inline { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 12px 28px; background: var(--cream); border-radius: 22px; padding: 22px 28px; margin: 6px 0 28px; text-align: left; }
+.timer--inline .timer__ring { width: 130px; height: 130px; margin: 0; grid-row: span 2; }
+.timer--inline .timer__time { font-size: 1.6rem; }
+.timer--inline .timer__time small { font-size: .62rem; }
+.timer--inline .timer__btns { justify-content: flex-start; }
+.timer--inline .timer__side h3 { font-size: .95rem; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 4px; }
+.timer--inline .timer__side p { margin: 0; font-size: .95rem; line-height: 1.6; color: var(--ink-2); }
+@media (max-width: 560px) {
+  .timer--inline { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 22px 18px; }
+  .timer--inline .timer__ring { grid-row: auto; }
+  .timer--inline .timer__btns { justify-content: center; }
+}

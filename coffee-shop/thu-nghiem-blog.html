@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Thử nghiệm] Cách pha cà phê tại nhà: Phin, Pour-over, Espresso, Cold brew | THANH TÂN Coffee</title>
+  <meta name="description" content="Hướng dẫn cách pha cà phê tại nhà chuẩn barista: tỉ lệ, nhiệt độ nước, độ xay, thời gian cho phin, pour-over, espresso và cold brew. Kèm bảng sửa lỗi chua, đắng, nhạt." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:site_name" content="THANH TÂN Coffee" />
+  <meta property="og:title" content="Cách pha cà phê tại nhà: Phin, Pour-over, Espresso, Cold brew" />
+  <meta property="og:description" content="Tỉ lệ, nhiệt độ, độ xay và thời gian chuẩn cho 4 cách pha cà phê phổ biến. Làm theo từng bước, pha ngon ngay từ ly đầu tiên." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="lab.css" />
+
+</head>
+<body>
+  <div class="read-progress" aria-hidden="true"><i></i></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="THANH TÂN Coffee – Trang chủ">
+        <svg viewBox="0 0 100 100" class="logo__mark" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="var(--brown)" stroke-width="2.2"/>
+          <ellipse cx="50" cy="50" rx="22" ry="26" fill="var(--paper)" stroke="var(--brown)" stroke-width="2.2"/>
+          <path d="M50 24C58 32 58 44 50 54C42 44 42 32 50 24Z" fill="var(--gold)"/>
+          <path d="M50 54C52 63 51 71 49 76" stroke="var(--brown)" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+          <path d="M29 52Q50 42 71 52" stroke="var(--gold)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span>Thanh Tân</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Điều hướng chính">
+        <a href="san-pham.html">Sản phẩm</a>
+        <a href="tim-gu.html">Tìm gu</a>
+        <a href="nguon-goc.html">Nguồn gốc</a>
+        <a href="goi-dinh-ky.html">Gói định kỳ</a>
+        <a href="cach-pha.html">Cách pha</a>
+        <a href="blog.html" class="active" aria-current="page">Blog</a>
+      </nav>
+      <div class="header__actions">
+        <a href="san-pham.html" class="btn btn--dark btn--sm">Mua cà phê</a>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Mở menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== TIÊU ĐỀ BÀI VIẾT ===== -->
+    <section class="post-hero">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Trang chủ</a> / <a href="blog.html">Blog</a> / <span>Cách pha cà phê tại nhà</span>
+        </nav>
+        <span class="pill">Hướng dẫn pha chế</span>
+        <h1>Cách pha cà phê tại nhà: 4 phương pháp chuẩn từ phin đến cold brew</h1>
+        <p class="post-lead">Cách pha cà phê ngon không nằm ở dụng cụ đắt tiền mà ở bốn con số: tỉ lệ, độ xay, nhiệt độ nước và thời gian. Bài viết này gom công thức pha chuẩn của Thanh Tân cho cà phê phin, pour-over, espresso và cold brew để bạn làm theo từng bước ngay tại nhà.</p>
+        <div class="post-meta">
+          <span>Cập nhật: 24/11/2026</span>
+          <span>Đọc trong 7 phút</span>
+          <span>Bởi THANH TÂN Coffee</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container post-layout">
+      <!-- ===== MỤC LỤC ===== -->
+      <aside class="toc" aria-label="Mục lục">
+        <h2>Mục lục</h2>
+        <ol>
+          <li><a href="#nguyen-tac">4 nguyên tắc pha cà phê</a></li>
+          <li><a href="#bang-so-sanh">Bảng công thức nhanh</a></li>
+          <li><a href="#pha-phin">Cách pha cà phê phin</a></li>
+          <li><a href="#pour-over">Cách pha pour-over</a></li>
+          <li><a href="#espresso">Cách pha espresso</a></li>
+          <li><a href="#cold-brew">Cách pha cold brew</a></li>
+          <li><a href="#loi-thuong-gap">Sửa lỗi chua, đắng, nhạt</a></li>
+          <li><a href="#chon-hat">Chọn hạt theo cách pha</a></li>
+          <li><a href="#faq">Câu hỏi thường gặp</a></li>
+        </ol>
+      </aside>
+
+      <article class="post-body">
+
+        <h2 id="nguyen-tac">4 nguyên tắc để pha cà phê ngon ở mọi phương pháp</h2>
+        <p>Dù dùng phin nhôm hay máy espresso, một ly cà phê ngon luôn đến từ việc kiểm soát bốn biến số sau. Hiểu chúng, bạn có thể tự chỉnh công thức theo khẩu vị thay vì chỉ làm theo máy móc.</p>
+        <ul>
+          <li><strong>Tỉ lệ cà phê : nước.</strong> Quyết định ly cà phê đậm hay nhạt. Nên dùng cân điện tử thay vì ước chừng bằng thìa.</li>
+          <li><strong>Độ xay.</strong> Xay càng mịn, nước chiết càng nhanh và càng nhiều vị đắng. Xay càng thô, cà phê càng nhẹ và dễ chua.</li>
+          <li><strong>Nhiệt độ nước.</strong> Khoảng 92–94°C cho cách pha nóng. Đun sôi rồi để nước nghỉ 30–60 giây trước khi rót.</li>
+          <li><strong>Thời gian tiếp xúc.</strong> Mỗi phương pháp có một khoảng thời gian riêng. Quá ngắn thì chua, quá dài thì đắng chát.</li>
+        </ul>
+        <div class="callout">
+          <b>Hai điều ít ai để ý:</b> hãy dùng hạt trong khoảng 2–4 tuần sau ngày rang và xay ngay trước khi pha; dùng nước lọc thay vì nước máy có mùi clo. Hai thay đổi nhỏ này cải thiện hương vị rõ hơn nhiều so với đổi dụng cụ.
+        </div>
+
+        <h2 id="bang-so-sanh">Bảng công thức pha cà phê nhanh</h2>
+        <p>Lưu bảng này lại để tra cứu mỗi sáng. Chi tiết từng bước nằm ở các phần bên dưới.</p>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">So sánh tỉ lệ, nhiệt độ, độ xay và thời gian của 4 cách pha cà phê</caption>
+            <thead>
+              <tr><th scope="col">Cách pha</th><th scope="col">Tỉ lệ</th><th scope="col">Nhiệt độ nước</th><th scope="col">Độ xay</th><th scope="col">Thời gian</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Phin</th><td>20g : 100ml</td><td>92–94°C</td><td>Vừa – thô</td><td>4–5 phút</td></tr>
+              <tr><th scope="row">Pour-over</th><td>15g : 250ml</td><td>92–93°C</td><td>Vừa – mịn</td><td>2:30–3:00</td></tr>
+              <tr><th scope="row">Espresso</th><td>18g → 36g</td><td>93°C</td><td>Mịn</td><td>25–30 giây</td></tr>
+              <tr><th scope="row">Cold brew</th><td>100g : 1 lít</td><td>Nước lạnh hoặc thường</td><td>Thô</td><td>16–18 giờ</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="pha-phin">Cách pha cà phê phin chuẩn vị Việt</h2>
+        <p>Cà phê phin cho ly cà phê đậm, hậu vị dày, hợp với Robusta Buôn Ma Thuột và các dòng cà phê rang đậm. Đây là cách pha cà phê phổ biến nhất trong gia đình Việt và chỉ cần một chiếc phin.</p>
+        <div class="spec" aria-label="Thông số pha phin">
+          <div><small>Tỉ lệ</small><b>20g : 100ml</b></div>
+          <div><small>Nhiệt độ</small><b>92–94°C</b></div>
+          <div><small>Độ xay</small><b>Vừa – thô</b></div>
+          <div><small>Thời gian</small><b>4–5 phút</b></div>
+        </div>
+        <h3>Các bước pha cà phê phin</h3>
+        <ol>
+          <li>Tráng phin và ly bằng nước nóng để giữ nhiệt cho cả quá trình pha.</li>
+          <li>Cho 20g cà phê xay vào phin, lắc nhẹ cho mặt cà phê phẳng rồi đặt lá nén lên, không nén quá chặt.</li>
+          <li>Rót khoảng 20ml nước nóng để ủ 30 giây cho cà phê nở đều.</li>
+          <li>Rót tiếp phần nước còn lại (tổng khoảng 100ml), đậy nắp phin.</li>
+          <li>Chờ 4–5 phút cho cà phê nhỏ giọt hết, khuấy đều rồi thưởng thức nóng hoặc đổ qua đá.</li>
+        </ol>
+        <div class="callout"><b>Mẹo chỉnh vị:</b> nếu nước chảy quá nhanh và ly cà phê nhạt, hãy xay mịn hơn. Nếu nhỏ giọt quá chậm và vị đắng gắt, hãy xay thô hơn hoặc nén lá phin nhẹ tay hơn.</div>
+
+        <h2 id="pour-over">Cách pha pour-over (V60, Kalita) cho vị thanh, sáng</h2>
+        <p>Pour-over rót nước thủ công qua phễu lọc giấy, cho ly cà phê trong, sạch và lộ rõ hương trái cây, hoa. Cách pha này làm nổi bật các dòng Arabica specialty.</p>
+        <div class="spec" aria-label="Thông số pha pour-over">
+          <div><small>Tỉ lệ</small><b>15g : 250ml</b></div>
+          <div><small>Nhiệt độ</small><b>92–93°C</b></div>
+          <div><small>Độ xay</small><b>Vừa – mịn</b></div>
+          <div><small>Thời gian</small><b>2:30–3:00</b></div>
+        </div>
+        <h3>Các bước pha pour-over</h3>
+        <ol>
+          <li>Đặt giấy lọc vào phễu, tráng bằng nước nóng rồi đổ bỏ nước tráng.</li>
+          <li>Cho 15g cà phê xay vào phễu, làm phẳng mặt bột.</li>
+          <li>Rót khoảng 30ml nước, ủ 30–45 giây để cà phê nở và xả khí.</li>
+          <li>Rót nước theo vòng xoắn ốc từ giữa ra ngoài, chia thành 3 lần cho đến khi đủ 250ml.</li>
+          <li>Chờ nước chảy hết, tổng thời gian khoảng 2 phút 30 giây đến 3 phút.</li>
+        </ol>
+        <div class="callout"><b>Mẹo chỉnh vị:</b> ly cà phê chua gắt thì xay mịn hơn một chút; vị đắng và khô thì xay thô hơn hoặc rót nhanh hơn.</div>
+
+        <h2 id="espresso">Cách pha espresso tại nhà</h2>
+        <p>Espresso cần máy có áp suất, nhưng công thức rất rõ ràng: cân cà phê vào, cân cà phê ra. Đây là nền tảng cho latte, cappuccino và các món pha máy khác.</p>
+        <div class="spec" aria-label="Thông số pha espresso">
+          <div><small>Tỉ lệ</small><b>18g → 36g</b></div>
+          <div><small>Nhiệt độ</small><b>93°C</b></div>
+          <div><small>Độ xay</small><b>Mịn</b></div>
+          <div><small>Thời gian</small><b>25–30 giây</b></div>
+        </div>
+        <h3>Các bước pha espresso</h3>
+        <ol>
+          <li>Xay 18g cà phê, cho vào tay cầm (portafilter), san phẳng bề mặt.</li>
+          <li>Nén (tamp) thẳng, đều lực để nước không chảy lệch một phía.</li>
+          <li>Lắp tay cầm vào máy, đặt ly lên cân và bấm chiết ngay.</li>
+          <li>Dừng khi được khoảng 36g espresso, thời gian lý tưởng 25–30 giây.</li>
+          <li>Nếu chiết dưới 25 giây, xay mịn hơn; nếu trên 30 giây, xay thô hơn.</li>
+        </ol>
+        <div class="callout"><b>Lưu ý:</b> hạt mới rang cần nghỉ khoảng 7 ngày trước khi pha espresso để crema ổn định và bớt khí CO₂.</div>
+
+        <h2 id="cold-brew">Cách pha cold brew ủ lạnh mượt, ít đắng</h2>
+        <p>Cold brew ủ cà phê xay thô trong nước lạnh nhiều giờ, cho vị mượt, ngọt hậu và ít đắng. Công thức dễ làm theo mẻ lớn, tiện để dành uống cả tuần.</p>
+        <div class="spec" aria-label="Thông số pha cold brew">
+          <div><small>Tỉ lệ</small><b>100g : 1 lít</b></div>
+          <div><small>Nước</small><b>Lạnh / thường</b></div>
+          <div><small>Độ xay</small><b>Thô</b></div>
+          <div><small>Thời gian</small><b>16–18 giờ</b></div>
+        </div>
+        <h3>Các bước pha cold brew</h3>
+        <ol>
+          <li>Cho 100g cà phê xay thô vào bình thủy tinh hoặc túi lọc.</li>
+          <li>Rót 1 lít nước lọc, khuấy nhẹ cho cà phê thấm đều.</li>
+          <li>Đậy kín, ủ trong tủ lạnh 16–18 giờ.</li>
+          <li>Lọc qua giấy lọc hoặc vải lọc, lọc hai lần để ly cà phê trong và sạch.</li>
+          <li>Bảo quản trong chai kín ở ngăn mát, dùng trong khoảng 7 ngày. Uống với đá hoặc pha thêm sữa.</li>
+        </ol>
+        <div class="callout"><b>Không có thời gian ủ?</b> Thanh Tân có sẵn dòng <a href="san-pham.html"><u>Thanh Tân Tươi Mới</u></a> (Cold Brew đóng lon), mở nắp là uống.</div>
+
+        <h2 id="loi-thuong-gap">Sửa lỗi khi pha cà phê: chua, đắng, nhạt</h2>
+        <p>Pha chưa ưng ý không có nghĩa là hạt dở. Hãy đối chiếu bảng dưới đây và chỉ thay đổi một biến số mỗi lần pha để biết điều chỉnh nào có tác dụng.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Dấu hiệu</th><th scope="col">Nguyên nhân thường gặp</th><th scope="col">Cách chỉnh</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Chua gắt, hụt hơi, vị mỏng</th><td>Chiết xuất chưa đủ</td><td>Xay mịn hơn, tăng nhiệt độ nước, kéo dài thời gian pha</td></tr>
+              <tr><th scope="row">Đắng chát, khô lưỡi</th><td>Chiết xuất quá mức</td><td>Xay thô hơn, giảm nhiệt độ nước, rút ngắn thời gian pha</td></tr>
+              <tr><th scope="row">Nhạt, loãng</th><td>Tỉ lệ nước quá nhiều</td><td>Tăng lượng cà phê hoặc giảm lượng nước</td></tr>
+              <tr><th scope="row">Đậm nhưng không có hương</th><td>Hạt để lâu hoặc xay sẵn</td><td>Dùng hạt mới rang, xay ngay trước khi pha, bảo quản túi kín</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="chon-hat">Chọn hạt cà phê phù hợp với từng cách pha</h2>
+        <p>Cùng một công thức, hạt khác nhau cho ly cà phê rất khác nhau. Gợi ý nhanh từ Thanh Tân:</p>
+        <ul>
+          <li><strong>Pha phin:</strong> <a href="san-pham.html"><u>Thanh Tân Nguyên Bản</u></a> (Robusta Buôn Ma Thuột rang mộc, đậm vị truyền thống) hoặc <a href="san-pham.html"><u>Thanh Tân Cổ Truyền</u></a> (rang xay kiểu phin truyền thống).</li>
+          <li><strong>Pour-over:</strong> <a href="san-pham.html"><u>Thanh Tân Thượng Hạng</u></a> – Arabica Cầu Đất pha Robusta Buôn Ma Thuột, hương thơm tinh tế, hậu vị ngọt dịu.</li>
+          <li><strong>Espresso:</strong> <a href="san-pham.html"><u>Thanh Tân Thượng Hạng</u></a>, để hạt nghỉ khoảng 7 ngày sau rang rồi mới chiết.</li>
+          <li><strong>Cold brew:</strong> tự ủ với hạt xay thô, hoặc dùng <a href="san-pham.html"><u>Thanh Tân Tươi Mới</u></a> đóng lon nếu bạn cần nhanh gọn.</li>
+        </ul>
+        <p>Chưa biết nên chọn loại nào? Làm <a href="tim-gu.html"><u>bài trắc nghiệm 3 câu</u></a> để Thanh Tân gợi ý đúng dòng cà phê hợp khẩu vị và cách pha của bạn.</p>
+
+        <h2 id="faq">Câu hỏi thường gặp về cách pha cà phê</h2>
+        <div class="faq">
+          <details>
+            <summary>Pha cà phê phin cần bao nhiêu gam cà phê cho một ly?</summary>
+            <p>Khoảng 20g cà phê xay cho 100ml nước nóng 92–94°C. Ủ 20ml nước trong 30 giây rồi rót đủ lượng còn lại, thời gian nhỏ giọt khoảng 4–5 phút.</p>
+          </details>
+          <details>
+            <summary>Nhiệt độ nước pha cà phê bao nhiêu là chuẩn?</summary>
+            <p>Với các cách pha nóng, nhiệt độ phù hợp là 92–94°C. Đun sôi rồi để nước nghỉ khoảng 30–60 giây trước khi pha để tránh cà phê bị đắng chát.</p>
+          </details>
+          <details>
+            <summary>Cà phê rang mộc là gì?</summary>
+            <p>Cà phê rang mộc là cà phê nguyên chất, chỉ rang từ hạt, không ướp bơ, hương liệu hay phụ gia tạo mùi. Hương vị đến hoàn toàn từ hạt và cách rang, nên nhìn rõ được sự khác nhau giữa các vùng trồng.</p>
+          </details>
+          <details>
+            <summary>Cold brew giữ được bao lâu trong tủ lạnh?</summary>
+            <p>Sau khi ủ 16–18 giờ và lọc hai lần, cold brew giữ được khoảng 7 ngày trong tủ lạnh nếu đậy kín nắp.</p>
+          </details>
+          <details>
+            <summary>Vì sao cà phê pha ra bị chua hoặc đắng?</summary>
+            <p>Vị chua gắt thường do chiết xuất chưa đủ: hãy xay mịn hơn hoặc tăng nhiệt độ nước. Vị đắng chát thường do chiết xuất quá mức: hãy xay thô hơn, giảm nhiệt độ hoặc rút ngắn thời gian pha. Xem chi tiết ở <a href="#loi-thuong-gap"><u>bảng sửa lỗi</u></a> phía trên.</p>
+          </details>
+        </div>
+
+        <!-- ===== CTA ===== -->
+        <aside class="post-cta">
+          <h2>Thanh tân như thuở ban đầu.</h2>
+          <p>Cà phê nguyên chất từ vùng đất đỏ bazan Buôn Ma Thuột, rang mới mỗi ngày. Freeship đơn từ 300K.</p>
+          <div class="post-cta__btns">
+            <a href="san-pham.html" class="btn btn--accent">Mua cà phê Thanh Tân</a>
+            <a href="goi-dinh-ky.html" class="btn btn--ghost">Xem gói định kỳ →</a>
+          </div>
+        </aside>
+      </article>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__news">
+          <h3>Pha chậm rãi, trọn vị.</h3>
+          <a href="san-pham.html" class="btn btn--accent">Chọn cà phê ngay</a>
+        </div>
+        <div class="footer__cols">
+          <div><h4>Sản phẩm</h4><a href="san-pham.html">Nguyên Bản</a><a href="san-pham.html">Thượng Hạng</a><a href="san-pham.html">Cổ Truyền</a><a href="san-pham.html">Tươi Mới</a></div>
+          <div><h4>Thanh Tân</h4><a href="nguon-goc.html">Nguồn gốc</a><a href="cach-pha.html">Cách pha</a><a href="blog.html">Blog</a><a href="goi-dinh-ky.html">Gói định kỳ</a></div>
+          <div><h4>Liên hệ</h4><span>Buôn Ma Thuột · Đắk Lắk · Việt Nam</span><span>Hotline, email: đang cập nhật</span></div>
+        </div>
+      </div>
+      <div class="footer__word" aria-hidden="true">THANH TÂN</div>
+      <div class="footer__bottom"><span>© <span id="year"></span> THANH TÂN Coffee</span><span>Đậm đà nguyên bản ✦ Thanh tân như thuở ban đầu</span></div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="common.js"></script>
+  <script src="timer.js"></script>
+  <script src="blog.js"></script>
+  <script src="lab-blog.js"></script>
+</body>
+</html>
